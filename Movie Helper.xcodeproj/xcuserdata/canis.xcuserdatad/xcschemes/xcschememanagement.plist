@@ -4,7 +4,7 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
-		<key>MovieHelp.xcscheme</key>
+		<key>Movie Helper.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
 			<integer>0</integer>
@@ -12,7 +12,7 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>13FC865A1EFFA1FB006A1E7E</key>
+		<key>13FC86331EFB1A3D006A1E7E</key>
 		<dict>
 			<key>primary</key>
 			<true/>

@@ -1,8 +1,8 @@
 //
 //  AppDelegate.swift
-//  MovieHelp
+//  Movie Helper
 //
-//  Created by Canis on 2017/6/25.
+//  Created by Canis on 2017/6/22.
 //  Copyright © 2017年 Canis. All rights reserved.
 //
 
@@ -16,6 +16,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
+            // Override point for customization after application launch.
+            //Changing the background color of navigation bar
+            UINavigationBar.appearance().barTintColor = UIColor(red: 216.0/255.0, green: 74.0/255.0,
+                                                                blue: 32.0/255.0, alpha: 1.0)
+            //Customizing the color of back button
+            UINavigationBar.appearance().tintColor = UIColor.white
+            //Changing the font of navigation bar title
+            if let barFont = UIFont(name: "Avenir-Light", size: 24.0) {
+                UINavigationBar.appearance().titleTextAttributes =
+                    [NSForegroundColorAttributeName:UIColor.white, NSFontAttributeName:barFont]
+            }
+
         // Override point for customization after application launch.
         return true
     }
@@ -53,7 +65,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
          application to it. This property is optional since there are legitimate
          error conditions that could cause the creation of the store to fail.
         */
-        let container = NSPersistentContainer(name: "MovieHelp")
+        let container = NSPersistentContainer(name: "Movie_Helper")
         container.loadPersistentStores(completionHandler: { (storeDescription, error) in
             if let error = error as NSError? {
                 // Replace this implementation with code to handle the error appropriately.

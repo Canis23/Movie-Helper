@@ -1,13 +1,12 @@
 //
 //  Movie.swift
-//  MovieHelp
+//  Movie Helper
 //
-//  Created by Canis on 2017/6/25.
+//  Created by Canis on 2017/6/22.
 //  Copyright © 2017年 Canis. All rights reserved.
 //
 
 import Foundation
-
 
 class Movie{
     var name = ""
@@ -15,6 +14,7 @@ class Movie{
     var isVisited = false
     init(name:String, image:String){
         self.name = name
-        self.image = image        
+        self.image = image
+        
     }
 }
