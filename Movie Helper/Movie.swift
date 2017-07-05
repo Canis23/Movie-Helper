@@ -8,6 +8,7 @@
 
 import Foundation
 
+//Movie class
 class Movie{
     var name = ""
     var image = ""

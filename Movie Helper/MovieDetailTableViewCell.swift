@@ -8,6 +8,9 @@
 
 import UIKit
 
+//這邊要做電影的詳細資料
+//還沒完工!!!
+//暫時空著
 class MovieDetailTableViewCell: UITableViewCell {
 
     override func awakeFromNib() {

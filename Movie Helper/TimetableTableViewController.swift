@@ -15,6 +15,7 @@ class TimetableTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        //摁對先這樣就好
         self.title = "時刻表"
 
         // Uncomment the following line to preserve selection between presentations

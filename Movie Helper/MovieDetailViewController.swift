@@ -8,6 +8,7 @@
 
 import UIKit
 
+//這邊會顯示電影的詳細資料們唷
 class MovieDetailViewController: UIViewController {
 
     @IBOutlet var movieImageView:UIImageView!
@@ -19,9 +20,11 @@ class MovieDetailViewController: UIViewController {
         
         self.title = movie.name
         movieImageView.image = UIImage(named: movie.image)
-        movieGOButton.layer.cornerRadius = 10
-        movieGOButton.layer.borderWidth = 1
-        movieGOButton.layer.borderColor = UIColor.lightGray.cgColor
+        
+        //設定Button的樣子喔喔喔喔
+        movieGOButton.layer.cornerRadius = 10 //圓角
+        movieGOButton.layer.borderWidth = 1 //邊框
+        movieGOButton.layer.borderColor = UIColor.lightGray.cgColor //顏色喔喔喔
         
 
         
