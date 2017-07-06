@@ -24,6 +24,8 @@ class MovieTableViewCell: UITableViewCell {
         self.nameLabel.layer.backgroundColor = UIColor.gray.cgColor
         self.nameLabel.layer.borderWidth = 0
         self.nameLabel.layer.cornerRadius = 10
+        
+        
 
     }
 

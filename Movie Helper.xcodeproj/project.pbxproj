@@ -20,6 +20,8 @@
 		13FC86861F04868C006A1E7E /* CityTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13FC86851F04868C006A1E7E /* CityTableViewController.swift */; };
 		13FC86881F0491E5006A1E7E /* TheaterChooserTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13FC86871F0491E5006A1E7E /* TheaterChooserTableViewController.swift */; };
 		13FC868A1F049396006A1E7E /* TimetableTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13FC86891F049396006A1E7E /* TimetableTableViewController.swift */; };
+		13FC868C1F0D2EE0006A1E7E /* MovieDetailMoreTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13FC868B1F0D2EDF006A1E7E /* MovieDetailMoreTableViewController.swift */; };
+		13FC868E1F0D387E006A1E7E /* MovieDetailMoreTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13FC868D1F0D387E006A1E7E /* MovieDetailMoreTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -38,6 +40,8 @@
 		13FC86851F04868C006A1E7E /* CityTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CityTableViewController.swift; sourceTree = "<group>"; };
 		13FC86871F0491E5006A1E7E /* TheaterChooserTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TheaterChooserTableViewController.swift; sourceTree = "<group>"; };
 		13FC86891F049396006A1E7E /* TimetableTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimetableTableViewController.swift; sourceTree = "<group>"; };
+		13FC868B1F0D2EDF006A1E7E /* MovieDetailMoreTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MovieDetailMoreTableViewController.swift; sourceTree = "<group>"; };
+		13FC868D1F0D387E006A1E7E /* MovieDetailMoreTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MovieDetailMoreTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -84,6 +88,8 @@
 				13FC86851F04868C006A1E7E /* CityTableViewController.swift */,
 				13FC86871F0491E5006A1E7E /* TheaterChooserTableViewController.swift */,
 				13FC86891F049396006A1E7E /* TimetableTableViewController.swift */,
+				13FC868B1F0D2EDF006A1E7E /* MovieDetailMoreTableViewController.swift */,
+				13FC868D1F0D387E006A1E7E /* MovieDetailMoreTableViewCell.swift */,
 			);
 			path = "Movie Helper";
 			sourceTree = "<group>";
@@ -169,6 +175,8 @@
 				13FC86821F041B63006A1E7E /* MovieDetailViewController.swift in Sources */,
 				13FC86841F042011006A1E7E /* MovieDetailTableViewCell.swift in Sources */,
 				13FC86511EFB3145006A1E7E /* Movie.swift in Sources */,
+				13FC868C1F0D2EE0006A1E7E /* MovieDetailMoreTableViewController.swift in Sources */,
+				13FC868E1F0D387E006A1E7E /* MovieDetailMoreTableViewCell.swift in Sources */,
 				13FC86861F04868C006A1E7E /* CityTableViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -19,7 +19,7 @@ class MovieDetailViewController: UIViewController {
         super.viewDidLoad()
         
         self.title = movie.name
-        movieImageView.image = UIImage(named: movie.image)
+        movieImageView.image = UIImage(data: movie.imageData as Data)
         
         //設定Button的樣子喔喔喔喔
         movieGOButton.layer.cornerRadius = 10 //圓角

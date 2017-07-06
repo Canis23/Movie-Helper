@@ -1,43 +1,28 @@
 //
-//  MovieTableViewController.swift
+//  MovieDetailMoreTableViewController.swift
 //  Movie Helper
 //
-//  Created by Canis on 2017/6/22.
+//  Created by Canis on 2017/7/5.
 //  Copyright © 2017年 Canis. All rights reserved.
 //
 
 import UIKit
 
+class MovieDetailMoreTableViewController: UITableViewController {
 
-//這個地方要列出現在有什麼電影上影喔～
-class MovieTableViewController: UITableViewController {
     
-    //測試用電影陣列
-    var movies:[Movie] = [Movie(name: "Maleficent", image: "http://web.vscinemas.com.tw/upload/film/film_20170621006.jpg")]
-        /*, Movie(name: "ENEMY", image: "ENEMY.jpg"), Movie(name: "天后開麥拉", image: "天后開麥拉.jpg"), Movie(name: "神偷奶爸3", image: "神偷奶爸3.jpg"), Movie(name: "變形金剛5", image: "變形金剛5.jpg"), Movie(name: "死小孩", image: "死小孩.jpg"), Movie(name: "接線員", image: "接線員.jpg")]*/
-    
-    //
-    override func viewWillAppear(_ animated: Bool) {
-        //
-        tableView.reloadData()
-    }
-    
-    //應該跟在main.storyboard能做的事情差不多ㄏ
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // 分隔線的間距 四個數值分別代表 上、左、下、右 的間距
-        //self.tableView.separatorInset = UIEdgeInsets.zero
-        
+        self.tableView.estimatedRowHeight = 36.0
+        self.tableView.rowHeight = UITableViewAutomaticDimension
+
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
-        //navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
     }
-    
-    //
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -45,63 +30,40 @@ class MovieTableViewController: UITableViewController {
     }
 
     // MARK: - Table view data source
-    
-    //Section:cell的分類?
-    //此處沒有分類所以return 1
+
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
         return 1
     }
-    
-    //有幾個cell , 根據陣列長度回傳
+
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return movies.count
+        return 3 //此處可修改tableView要的欄位數量
     }
+
     
-    //Cell裡面要放什麼毛
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! MovieTableViewCell
-        
+        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! MovieDetailMoreTableViewCell
+
         // Configure the cell...
-        //  cell.accessoryType = .disclosureIndicator
-        
-        //Label setting
-        cell.nameLabel?.text = movies[indexPath.row].name
-        cell.nameLabel.layer.cornerRadius = 10
-        cell.nameLabel.layer.backgroundColor = UIColor.gray.cgColor
-        
-        //imageView Setting
-        cell.movieImageView.image = UIImage(data: movies[indexPath.row].imageData as Data)
-        
-        
-        
-        //cell.movieImageView?.image = UIImage(named: movies[indexPath.row].image)
-        
-        return cell
-    }
-    
-    //Cell點選後會幹三小
-    //showMovieDetail: Main.storyboard 兩個view之間的箭頭 , 他的identifier
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "showMovieDetail" {
-            if let indexPath = tableView.indexPathForSelectedRow {
-                let destinationController = segue.destination as! MovieDetailViewController
-                destinationController.movie = movies[indexPath.row]
-                //MovieDetailViewController那邊有一個movie 把這邊的movie丟過去
-            }
+        switch indexPath.row {
+        case 0:
+            cell.fieldLabel.text = "導演"
+            cell.valueLabel.text = ""
+        case 1:
+            cell.fieldLabel.text = "主演"
+            cell.valueLabel.text = ""
+        case 2:
+            cell.fieldLabel.text = "簡介"
+            cell.valueLabel.text = ""
+        default:
+            cell.fieldLabel.text = ""
+            cell.valueLabel.text = ""
         }
-    }
-
-    /*
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
-
-        // Configure the cell...
-
+        
         return cell
     }
-    */
+    
 
     /*
     // Override to support conditional editing of the table view.

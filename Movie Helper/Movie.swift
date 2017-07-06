@@ -12,10 +12,16 @@ import Foundation
 class Movie{
     var name = ""
     var image = ""
+    var imageData = NSData()
     var isVisited = false
     init(name:String, image:String){
         self.name = name
         self.image = image
+        
+        let url  = URL(string: image)
+        let nsdata = NSData(contentsOf: url!)
+        
+        self.imageData = nsdata!
         
     }
 }
