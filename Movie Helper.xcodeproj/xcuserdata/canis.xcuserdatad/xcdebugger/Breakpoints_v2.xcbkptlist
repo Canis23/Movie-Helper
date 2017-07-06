@@ -10,43 +10,275 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Movie Helper/MovieTableViewController.swift"
-            timestampString = "520953801.427262"
+            timestampString = "521045277.481984"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "95"
+            endingLineNumber = "95"
+            landmarkName = "tableView(_:cellForRowAt:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Movie Helper/MovieTableViewController.swift"
+            timestampString = "521045277.481984"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "87"
+            endingLineNumber = "87"
+            landmarkName = "tableView(_:cellForRowAt:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Movie Helper/MovieTableViewController.swift"
+            timestampString = "521045277.481984"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "89"
+            endingLineNumber = "89"
+            landmarkName = "tableView(_:cellForRowAt:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Movie Helper/MovieTableViewController.swift"
+            timestampString = "521024968.991599"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "14"
+            endingLineNumber = "14"
+            landmarkName = "MovieTableViewController"
+            landmarkType = "3">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Movie_Helper.MovieTableViewController.__deallocating_deinit"
+                  moduleName = "Movie Helper"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/canis/Movie-Helper/Movie%20Helper/MovieTableViewController.swift"
+                  timestampString = "521022774.033054"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "0"
+                  endingLineNumber = "0"
+                  offsetFromSymbolStart = "4">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Movie_Helper.MovieTableViewController.init (style : __C.UITableViewStyle) -&gt; Movie_Helper.MovieTableViewController"
+                  moduleName = "Movie Helper"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/canis/Movie-Helper/Movie%20Helper/MovieTableViewController.swift"
+                  timestampString = "521022774.037276"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "15"
+                  endingLineNumber = "15"
+                  offsetFromSymbolStart = "31">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Movie_Helper.MovieTableViewController.__allocating_init (style : __C.UITableViewStyle) -&gt; Movie_Helper.MovieTableViewController"
+                  moduleName = "Movie Helper"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/canis/Movie-Helper/Movie%20Helper/MovieTableViewController.swift"
+                  timestampString = "521022774.039931"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "0"
+                  endingLineNumber = "0"
+                  offsetFromSymbolStart = "4">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Movie_Helper.MovieTableViewController.init (nibName : Swift.Optional&lt;Swift.String&gt;, bundle : Swift.Optional&lt;__ObjC.Bundle&gt;) -&gt; Movie_Helper.MovieTableViewController"
+                  moduleName = "Movie Helper"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/canis/Movie-Helper/Movie%20Helper/MovieTableViewController.swift"
+                  timestampString = "521022774.042343"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "15"
+                  endingLineNumber = "15"
+                  offsetFromSymbolStart = "70">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Movie_Helper.MovieTableViewController.__allocating_init (nibName : Swift.Optional&lt;Swift.String&gt;, bundle : Swift.Optional&lt;__ObjC.Bundle&gt;) -&gt; Movie_Helper.MovieTableViewController"
+                  moduleName = "Movie Helper"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/canis/Movie-Helper/Movie%20Helper/MovieTableViewController.swift"
+                  timestampString = "521022774.04455"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "0"
+                  endingLineNumber = "0"
+                  offsetFromSymbolStart = "23">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Movie_Helper.MovieTableViewController.__allocating_init (coder : __ObjC.NSCoder) -&gt; Swift.Optional&lt;Movie_Helper.MovieTableViewController&gt;"
+                  moduleName = "Movie Helper"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/canis/Movie-Helper/Movie%20Helper/MovieTableViewController.swift"
+                  timestampString = "521022774.04634"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "0"
+                  endingLineNumber = "0"
+                  offsetFromSymbolStart = "4">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Movie_Helper.MovieTableViewController.init (coder : __ObjC.NSCoder) -&gt; Swift.Optional&lt;Movie_Helper.MovieTableViewController&gt;"
+                  moduleName = "Movie Helper"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/canis/Movie-Helper/Movie%20Helper/MovieTableViewController.swift"
+                  timestampString = "521022774.048285"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "15"
+                  endingLineNumber = "15"
+                  offsetFromSymbolStart = "31">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Movie Helper/MovieTableViewController.swift"
+            timestampString = "521024968.991599"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "20"
+            endingLineNumber = "20"
+            landmarkName = "MovieTableViewController"
+            landmarkType = "3">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Movie_Helper.MovieTableViewController.movies.getter : Swift.Array&lt;Movie_Helper.Movie&gt;"
+                  moduleName = "Movie Helper"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/canis/Movie-Helper/Movie%20Helper/MovieTableViewController.swift"
+                  timestampString = "521022776.146848"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "18"
+                  endingLineNumber = "18"
+                  offsetFromSymbolStart = "35">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Movie_Helper.MovieTableViewController.movies.setter : Swift.Array&lt;Movie_Helper.Movie&gt;"
+                  moduleName = "Movie Helper"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/canis/Movie-Helper/Movie%20Helper/MovieTableViewController.swift"
+                  timestampString = "521022776.152082"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "18"
+                  endingLineNumber = "18"
+                  offsetFromSymbolStart = "65">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Movie_Helper.MovieTableViewController.init (style : __C.UITableViewStyle) -&gt; Movie_Helper.MovieTableViewController"
+                  moduleName = "Movie Helper"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/canis/Movie-Helper/Movie%20Helper/MovieTableViewController.swift"
+                  timestampString = "521022776.15371"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "18"
+                  endingLineNumber = "18"
+                  offsetFromSymbolStart = "42">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Movie_Helper.MovieTableViewController.init (nibName : Swift.Optional&lt;Swift.String&gt;, bundle : Swift.Optional&lt;__ObjC.Bundle&gt;) -&gt; Movie_Helper.MovieTableViewController"
+                  moduleName = "Movie Helper"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/canis/Movie-Helper/Movie%20Helper/MovieTableViewController.swift"
+                  timestampString = "521022776.155345"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "18"
+                  endingLineNumber = "18"
+                  offsetFromSymbolStart = "81">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Movie_Helper.MovieTableViewController.init (coder : __ObjC.NSCoder) -&gt; Swift.Optional&lt;Movie_Helper.MovieTableViewController&gt;"
+                  moduleName = "Movie Helper"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/canis/Movie-Helper/Movie%20Helper/MovieTableViewController.swift"
+                  timestampString = "521022776.156991"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "18"
+                  endingLineNumber = "18"
+                  offsetFromSymbolStart = "42">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Movie Helper/MovieTableViewController.swift"
+            timestampString = "521045277.481984"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "81"
             endingLineNumber = "81"
-            landmarkName = "tableView(_:cellForRowAt:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Movie Helper/MovieTableViewController.swift"
-            timestampString = "520953801.427262"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "73"
-            endingLineNumber = "73"
-            landmarkName = "tableView(_:cellForRowAt:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Movie Helper/MovieTableViewController.swift"
-            timestampString = "520953801.427262"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "75"
-            endingLineNumber = "75"
             landmarkName = "tableView(_:cellForRowAt:)"
             landmarkType = "7">
          </BreakpointContent>

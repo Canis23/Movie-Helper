@@ -10,7 +10,13 @@ import UIKit
 
 
 //這個地方要列出現在有什麼電影上影喔～
-class MovieTableViewController: UITableViewController {
+class MovieTableViewController: UITableViewController, UISearchResultsUpdating{
+    
+
+    
+    var searchController:UISearchController!
+    
+    var searchResults:[Movie] = []
     
     //測試用電影陣列
     var movies:[Movie] = [Movie(name: "Maleficent", image: "http://web.vscinemas.com.tw/upload/film/film_20170621006.jpg")]
@@ -18,23 +24,23 @@ class MovieTableViewController: UITableViewController {
     
     //
     override func viewWillAppear(_ animated: Bool) {
-        //
         tableView.reloadData()
+        navigationController?.hidesBarsOnSwipe = true
     }
     
     //應該跟在main.storyboard能做的事情差不多ㄏ
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // 分隔線的間距 四個數值分別代表 上、左、下、右 的間距
-        //self.tableView.separatorInset = UIEdgeInsets.zero
+        //searchControllor
         
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem()
-        //navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
+        searchController = UISearchController(searchResultsController: nil)
+        tableView.tableHeaderView = searchController.searchBar
+        searchController.searchResultsUpdater = self
+        searchController.dimsBackgroundDuringPresentation = false
+        searchController.searchBar.placeholder = "Search movies..."
+        searchController.searchBar.tintColor = UIColor.white
+        searchController.searchBar.barTintColor = UIColor.black
     }
     
     //
@@ -56,7 +62,13 @@ class MovieTableViewController: UITableViewController {
     //有幾個cell , 根據陣列長度回傳
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return movies.count
+        
+        if searchController.isActive{
+            return searchResults.count
+        }
+        else{
+            return movies.count
+        }
     }
     
     //Cell裡面要放什麼毛
@@ -65,6 +77,8 @@ class MovieTableViewController: UITableViewController {
         
         // Configure the cell...
         //  cell.accessoryType = .disclosureIndicator
+        
+        //let movie = (searchController.isActive) ? searchResults[indexPath.row] : movies[indexPath.row]
         
         //Label setting
         cell.nameLabel?.text = movies[indexPath.row].name
@@ -87,9 +101,29 @@ class MovieTableViewController: UITableViewController {
         if segue.identifier == "showMovieDetail" {
             if let indexPath = tableView.indexPathForSelectedRow {
                 let destinationController = segue.destination as! MovieDetailViewController
-                destinationController.movie = movies[indexPath.row]
+                destinationController.movie = (searchController.isActive) ? searchResults[indexPath.row] : movies[indexPath.row]
+                self.searchController.isActive = false
+                //destinationController.movie = movies[indexPath.row]
                 //MovieDetailViewController那邊有一個movie 把這邊的movie丟過去
             }
+        }
+    }
+    
+    //search動作
+    func filterContent(for searchText: String) {
+        searchResults = movies.filter({ (movie) -> Bool in
+            let name = movie.name
+            let isMatch = name.localizedCaseInsensitiveContains(searchText)
+            return isMatch
+        })
+    }
+    
+    //search動作後更新View
+    @available(iOS 8.0, *)
+    public func updateSearchResults(for searchController: UISearchController) {
+        if let searchText = searchController.searchBar.text {
+            filterContent(for: searchText)
+            tableView.reloadData()
         }
     }
 
@@ -103,13 +137,18 @@ class MovieTableViewController: UITableViewController {
     }
     */
 
-    /*
+    
     // Override to support conditional editing of the table view.
     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
         // Return false if you do not want the specified item to be editable.
-        return true
+        
+        if searchController.isActive {
+            return false
+        }
+        else{
+            return true
+        }
     }
-    */
 
     /*
     // Override to support editing the table view.

@@ -10,12 +10,17 @@ import UIKit
 
 class MovieDetailMoreTableViewController: UITableViewController {
 
+    var choose:Choose!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.title = "Detail"
+        
         self.tableView.estimatedRowHeight = 36.0
         self.tableView.rowHeight = UITableViewAutomaticDimension
+        
+        self.tableView.separatorInset = UIEdgeInsets.init(top: 0, left: 0, bottom: 0, right: 0)
 
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
@@ -38,7 +43,7 @@ class MovieDetailMoreTableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return 3 //此處可修改tableView要的欄位數量
+        return 5 //此處可修改tableView要的欄位數量
     }
 
     
@@ -49,13 +54,19 @@ class MovieDetailMoreTableViewController: UITableViewController {
         switch indexPath.row {
         case 0:
             cell.fieldLabel.text = "導演"
-            cell.valueLabel.text = ""
+            cell.valueLabel.text = "someone"
         case 1:
             cell.fieldLabel.text = "主演"
-            cell.valueLabel.text = ""
+            cell.valueLabel.text = "someone"
         case 2:
+            cell.fieldLabel.text = "片長"
+            cell.valueLabel.text = "a long long time~~~~"
+        case 3:
+            cell.fieldLabel.text = "分級"
+            cell.valueLabel.text = "XX級"
+        case 4:
             cell.fieldLabel.text = "簡介"
-            cell.valueLabel.text = ""
+            cell.valueLabel.text = "something\nomething"
         default:
             cell.fieldLabel.text = ""
             cell.valueLabel.text = ""

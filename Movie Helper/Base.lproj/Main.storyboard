@@ -20,14 +20,9 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <color key="separatorColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
-                        <searchBar key="tableHeaderView" contentMode="redraw" id="34c-qy-oml">
-                            <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
-                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
-                            <textInputTraits key="textInputTraits"/>
-                        </searchBar>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="Cell" selectionStyle="default" indentationWidth="10" reuseIdentifier="Cell" rowHeight="200" id="dgu-vP-88q" customClass="MovieTableViewCell" customModule="Movie_Helper" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="72" width="375" height="200"/>
+                                <rect key="frame" x="0.0" y="28" width="375" height="200"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" tableViewCell="dgu-vP-88q" id="2T0-Dw-1pT">
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="200"/>
@@ -68,8 +63,19 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Movies" id="Gh5-t5-qd1"/>
+                    <connections>
+                        <outlet property="searchDisplayController" destination="ITL-Tl-h6E" id="yyq-UB-Di8"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gIo-eJ-4Zz" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <searchDisplayController id="ITL-Tl-h6E">
+                    <connections>
+                        <outlet property="delegate" destination="bNr-ut-lXy" id="87e-fx-srG"/>
+                        <outlet property="searchContentsController" destination="bNr-ut-lXy" id="rJq-W8-fvP"/>
+                        <outlet property="searchResultsDataSource" destination="bNr-ut-lXy" id="STo-X4-Ll0"/>
+                        <outlet property="searchResultsDelegate" destination="bNr-ut-lXy" id="jdc-so-1Fe"/>
+                    </connections>
+                </searchDisplayController>
             </objects>
             <point key="canvasLocation" x="1254" y="121"/>
         </scene>
@@ -99,7 +105,7 @@
                                 <rect key="frame" x="0.0" y="614" width="375" height="53"/>
                                 <color key="backgroundColor" red="0.087019230769230793" green="0.087019230769230793" blue="0.087019230769230793" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="20"/>
-                                <state key="normal" title="More">
+                                <state key="normal" title="Detail">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
@@ -136,7 +142,7 @@
         <scene sceneID="5nj-9f-EsE">
             <objects>
                 <tableViewController id="OOY-GC-IMI" customClass="MovieDetailMoreTableViewController" customModule="Movie_Helper" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="8Zs-tj-opS">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" allowsSelection="NO" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="8Zs-tj-opS">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -149,23 +155,23 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="72F-05-y1D">
-                                            <rect key="frame" x="8" y="11.5" width="359" height="20.5"/>
+                                            <rect key="frame" x="8" y="15.5" width="359" height="12"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="261" verticalHuggingPriority="251" text="Field" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="o4m-VG-DPj">
-                                                    <rect key="frame" x="0.0" y="0.0" width="119.5" height="20.5"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="261" verticalHuggingPriority="251" text="Field" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="o4m-VG-DPj">
+                                                    <rect key="frame" x="0.0" y="0.0" width="102.5" height="12"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Value" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0Pl-Nh-f6Y">
-                                                    <rect key="frame" x="119.5" y="0.0" width="239.5" height="20.5"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Value" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0Pl-Nh-f6Y">
+                                                    <rect key="frame" x="102.5" y="0.0" width="256.5" height="12"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="o4m-VG-DPj" firstAttribute="width" secondItem="0Pl-Nh-f6Y" secondAttribute="width" multiplier="0.5" id="Ni4-uf-Te7"/>
+                                                <constraint firstItem="o4m-VG-DPj" firstAttribute="width" secondItem="0Pl-Nh-f6Y" secondAttribute="width" multiplier="0.4" id="Ni4-uf-Te7"/>
                                             </constraints>
                                         </stackView>
                                     </subviews>
@@ -173,6 +179,8 @@
                                         <constraint firstAttribute="trailingMargin" secondItem="72F-05-y1D" secondAttribute="trailing" id="Cls-Me-xGc"/>
                                         <constraint firstItem="72F-05-y1D" firstAttribute="centerY" secondItem="8Hc-dE-ZgO" secondAttribute="centerY" id="Ea4-EF-Gb3"/>
                                         <constraint firstAttribute="leadingMargin" secondItem="72F-05-y1D" secondAttribute="leading" id="HgC-ot-dEJ"/>
+                                        <constraint firstAttribute="bottomMargin" secondItem="72F-05-y1D" secondAttribute="bottom" constant="7.8300000000000001" id="M3X-jE-wcS"/>
+                                        <constraint firstItem="72F-05-y1D" firstAttribute="top" secondItem="8Hc-dE-ZgO" secondAttribute="topMargin" constant="7" id="syx-9m-mvz"/>
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>

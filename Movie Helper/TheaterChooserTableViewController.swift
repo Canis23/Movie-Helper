@@ -11,17 +11,16 @@ import UIKit
 //很明顯的這邊就是用來選電影院的呦～
 class TheaterChooserTableViewController: UITableViewController {
 
-    var city:String!
+    var choose:Choose!
     
     //我也不知道哪邊有哪些電影院,就先用這個當測試吧～
-    var theaterTest = ["Test1", "Tset2", "Tset3"]
     
     //跟main.storyboard做差不多的事情
     override func viewDidLoad() {
         super.viewDidLoad()
         
         //你看這邊就可以把那個橘橘的設定成什麼城市了唷
-        self.title = city
+        self.title = choose.city?.name
 
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
@@ -46,7 +45,7 @@ class TheaterChooserTableViewController: UITableViewController {
     //不能確定他有幾間電影院啊 , 所以就交給陣列處理吧
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return theaterTest.count
+        return choose.city.theaters.count
     }
 
     //這邊就可以設定每個Cell裡面的值
@@ -54,8 +53,9 @@ class TheaterChooserTableViewController: UITableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as UITableViewCell
         // 顯示的內容
         if let myLabel = cell.textLabel {
-            myLabel.text = "\(theaterTest[indexPath.row])"
+            myLabel.text = "\(choose.city.theaters[indexPath.row].name)"
         }
+        
         
         return cell
     }
@@ -65,8 +65,9 @@ class TheaterChooserTableViewController: UITableViewController {
         if segue.identifier == "showTimetable" {
             if let indexPath = tableView.indexPathForSelectedRow {
                 let destinationController = segue.destination as! TimetableTableViewController
-                destinationController.cityName = theaterTest[indexPath.row]
-                //把CityName傳過去,沒什麼用就是了----\\FF
+                choose.theater = choose.city.theaters[indexPath.row]
+                destinationController.choose = choose
+                
             }
         }
     }

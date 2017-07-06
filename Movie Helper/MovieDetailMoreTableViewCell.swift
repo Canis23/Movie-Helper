@@ -16,6 +16,7 @@ class MovieDetailMoreTableViewCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
+        self.layoutMargins = UIEdgeInsets.zero
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {

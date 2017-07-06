@@ -15,8 +15,19 @@ class MovieDetailViewController: UIViewController {
     @IBOutlet var movieGOButton:UIButton!
     
     var movie:Movie!
+    var choose:Choose!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        choose = Choose(movie: movie)
+        /* choose setting*/
+        
+        
+        
+        /*---------------*/
+        
+        navigationController?.hidesBarsOnSwipe = false
         
         self.title = movie.name
         movieImageView.image = UIImage(data: movie.imageData as Data)
@@ -29,12 +40,33 @@ class MovieDetailViewController: UIViewController {
 
         
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        navigationController?.hidesBarsOnSwipe = false
+        navigationController?.setNavigationBarHidden(false, animated: true)
+    }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
     
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "showCityChooser" {
+                let destinationController = segue.destination as! CityTableViewController
+                destinationController.choose = choose
+                //TheaterChooserTableViewController那邊用一個String來接這邊傳過去的cityName
+                //然後就可以把它設定成title摟喔喔喔喔喔
+                //沒錯就是那個橘橘的
+        }
+        else if segue.identifier == "showDetailMore" {
+            let destinationController = segue.destination as! MovieDetailMoreTableViewController
+            destinationController.choose = choose
+        }
+    }
 
     /*
     // MARK: - Navigation

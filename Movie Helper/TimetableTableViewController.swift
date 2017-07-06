@@ -10,7 +10,7 @@ import UIKit
 
 class TimetableTableViewController: UITableViewController {
 
-    var cityName:String!
+    var choose:Choose!
     
     override func viewDidLoad() {
         super.viewDidLoad()
