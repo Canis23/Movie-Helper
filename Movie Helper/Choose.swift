@@ -19,6 +19,9 @@ class Choose{
     var timeTable:[Timetable] = []
     var getData:Bool = false
     
+    var movieTime = ""
+    var movieTheater:Theater!
+    
     init(movie:Movie) {
         self.movie = movie
     }

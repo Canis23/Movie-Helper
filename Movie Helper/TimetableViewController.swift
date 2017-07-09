@@ -25,6 +25,7 @@ class TimetableViewController: UIViewController, UITableViewDataSource, UITableV
         // Do any additional setup after loading the view.
         if(choose.getData == false){
             connectServer(success: done)
+            choose.getData = true
         }
         else{
             tableView.reloadData()
@@ -123,6 +124,41 @@ class TimetableViewController: UIViewController, UITableViewDataSource, UITableV
         return cell
     }
     
+    //action
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "showMap" {
+            let destinationController = segue.destination as! MapViewController
+            choose.movieTheater = choose.theater
+            /*...
+             find the best theater and time
+             ...*/
+            getMovieTime()
+            //計算下一場時間
+            destinationController.choose = choose
+        }
+    }
+    
+    func getMovieTime() {
+        let nowDate = Date()
+        let formatter = DateFormatter()
+        formatter.dateFormat = "HH:mm"
+        let nowTime = formatter.string(from: nowDate)
+        for time in choose.timeTable[0].times{
+            if nowTime < "24:00" {
+                if time > nowTime{
+                    choose.movieTime = time
+                    break
+                }
+            }
+            else {
+                if time > nowTime && time < "06:00"{
+                    choose.movieTime = time
+                    break
+                }
+            }
+        }
+        
+    }
 
     /*
     // MARK: - Navigation

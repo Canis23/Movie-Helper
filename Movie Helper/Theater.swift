@@ -7,10 +7,14 @@
 //
 
 import Foundation
+import CoreLocation
+
 
 class Theater {
     var name = ""
     var num = ""
+    
+    //var location:CLLocation!
     
     init(num:String,name:String) {
         self.num = num

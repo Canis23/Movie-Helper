@@ -30,6 +30,7 @@
 		13FC86A01F113366006A1E7E /* TimetableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13FC869F1F113366006A1E7E /* TimetableViewController.swift */; };
 		13FC86A21F115311006A1E7E /* TimetableTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13FC86A11F115311006A1E7E /* TimetableTableViewCell.swift */; };
 		13FC86A41F120D8A006A1E7E /* Timetable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13FC86A31F120D8A006A1E7E /* Timetable.swift */; };
+		13FC86A71F125475006A1E7E /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 13FC86A61F125475006A1E7E /* MapKit.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -58,6 +59,7 @@
 		13FC869F1F113366006A1E7E /* TimetableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimetableViewController.swift; sourceTree = "<group>"; };
 		13FC86A11F115311006A1E7E /* TimetableTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimetableTableViewCell.swift; sourceTree = "<group>"; };
 		13FC86A31F120D8A006A1E7E /* Timetable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Timetable.swift; sourceTree = "<group>"; };
+		13FC86A61F125475006A1E7E /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -65,6 +67,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				13FC86A71F125475006A1E7E /* MapKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -76,6 +79,7 @@
 			children = (
 				13FC86361EFB1A3D006A1E7E /* Movie Helper */,
 				13FC86351EFB1A3D006A1E7E /* Products */,
+				13FC86A51F125475006A1E7E /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -118,6 +122,14 @@
 			path = "Movie Helper";
 			sourceTree = "<group>";
 		};
+		13FC86A51F125475006A1E7E /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				13FC86A61F125475006A1E7E /* MapKit.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -151,6 +163,11 @@
 					13FC86331EFB1A3D006A1E7E = {
 						CreatedOnToolsVersion = 8.2.1;
 						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.Maps.iOS = {
+								enabled = 0;
+							};
+						};
 					};
 				};
 			};

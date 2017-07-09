@@ -17,6 +17,8 @@ class TheaterChooserViewController: UIViewController, UITableViewDataSource, UIT
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        title = choose.city.name
 
         // Do any additional setup after loading the view.
     }
@@ -54,11 +56,17 @@ class TheaterChooserViewController: UIViewController, UITableViewDataSource, UIT
         if segue.identifier == "showTimetable" {
             if let indexPath = tableView.indexPathForSelectedRow {
                 let destinationController = segue.destination as! TimetableViewController
-                //getTimetableData();
                 choose.theater = choose.city.theaters[indexPath.row]
                 destinationController.choose = choose
                 
             }
+        }
+        else if segue.identifier == "showMap" {
+            let destinationController = segue.destination as! MapViewController
+            /*...
+             find the best theater and time
+             ...*/
+            destinationController.choose = choose
         }
     }
     

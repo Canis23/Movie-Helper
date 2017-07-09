@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CoreLocation
 
 //這裡就是用來選地區的喔～
 class CityTableViewController: UITableViewController {
@@ -40,6 +41,9 @@ class CityTableViewController: UITableViewController {
      16”>台南南紡威秀影城
      18">高雄大遠百威秀影城
      */
+    
+    /*var theaterLocations:[CLLocation] = [
+        CLLocation(latitude: 37.785034, longitude: -122.406214), CLLocation(latitude: 25.037118, longitude: 121.566992), "台北京站威秀影城", "台北日新威秀影城", "板橋大遠百威秀影城", "林口MITSUI OUTLET PARK威秀影城", "林口MITSUI OUTLET PARK威秀影城(MAPPA)", "新竹大遠百威秀影城", "", "新竹巨城威秀影城", "頭份尚順威秀影城", "台中大遠百威秀影城", "台中TIGER CITY威秀影城", "", "", "台南大遠百威秀影城","台南南紡威秀影城", "", "高雄大遠百威秀影城"]*/
     
     var theaterNames:[String] = [
         "", "台北信義威秀影城", "台北京站威秀影城", "台北日新威秀影城", "板橋大遠百威秀影城", "林口MITSUI OUTLET PARK威秀影城", "林口MITSUI OUTLET PARK威秀影城(MAPPA)", "新竹大遠百威秀影城", "", "新竹巨城威秀影城", "頭份尚順威秀影城", "台中大遠百威秀影城", "台中TIGER CITY威秀影城", "", "", "台南大遠百威秀影城","台南南紡威秀影城", "", "高雄大遠百威秀影城"]
@@ -77,7 +81,7 @@ class CityTableViewController: UITableViewController {
         super.viewDidLoad()
         
         //上面那個橘橘的 可以設定他的title
-        self.title = "\(choose.version) 選擇地區"
+        self.title = "選擇地區"
         
 
         // Uncomment the following line to preserve selection between presentations

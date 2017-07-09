@@ -7,20 +7,29 @@
 //
 
 import UIKit
+import MapKit
+import CoreLocation
 
-class MapViewController: UIViewController {
+class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate{
+    
+    @IBOutlet var mapView: MKMapView!
+    @IBOutlet var timeLabel: UILabel!
+    
+    var myLocationManager: CLLocationManager!
+    var myAnnotation: MKPointAnnotation = MKPointAnnotation()
+    
+    var choose: Choose!
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        title = "Map"
 
         // Do any additional setup after loading the view.
+        timeLabel.text = choose.movieTime
+        
+        
+        
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
 
     /*
     // MARK: - Navigation

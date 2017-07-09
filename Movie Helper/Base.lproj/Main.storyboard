@@ -344,7 +344,7 @@
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <segue destination="71w-1D-0vK" kind="show" identifier="showMapView" id="mfu-tp-Xeg"/>
+                                    <segue destination="71w-1D-0vK" kind="show" identifier="showMap" id="mfu-tp-Xeg"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -383,13 +383,36 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="qdw-3m-cDf">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="512"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" mapType="standard" showsUserLocation="YES" translatesAutoresizingMaskIntoConstraints="NO" id="WFd-pg-4LN">
+                                <rect key="frame" x="0.0" y="64" width="375" height="555"/>
                             </mapView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Cc6-cJ-TY3">
+                                <rect key="frame" x="0.0" y="614" width="375" height="53"/>
+                                <color key="backgroundColor" red="0.098039217289999994" green="0.098039217289999994" blue="0.098039217289999994" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="53" id="OiG-8J-83G"/>
+                                    <constraint firstAttribute="width" constant="375" id="c9Z-0u-Gcq"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="WFd-pg-4LN" firstAttribute="leading" secondItem="lon-Tq-Psb" secondAttribute="leading" id="0ab-H5-bg9"/>
+                            <constraint firstAttribute="trailing" secondItem="Cc6-cJ-TY3" secondAttribute="trailing" id="1sx-79-vQy"/>
+                            <constraint firstAttribute="trailing" secondItem="WFd-pg-4LN" secondAttribute="trailing" id="FS3-M6-Te5"/>
+                            <constraint firstItem="WFd-pg-4LN" firstAttribute="top" secondItem="LUI-Cq-LnD" secondAttribute="bottom" id="YLw-ns-hSN"/>
+                            <constraint firstItem="Cc6-cJ-TY3" firstAttribute="leading" secondItem="lon-Tq-Psb" secondAttribute="leading" id="ZQp-Qi-dpE"/>
+                            <constraint firstItem="w9M-K6-HMQ" firstAttribute="top" secondItem="WFd-pg-4LN" secondAttribute="bottom" constant="53" id="cr3-nf-kit"/>
+                            <constraint firstItem="w9M-K6-HMQ" firstAttribute="top" secondItem="Cc6-cJ-TY3" secondAttribute="bottom" id="hyE-5P-bQa"/>
+                        </constraints>
                     </view>
+                    <connections>
+                        <outlet property="mapView" destination="WFd-pg-4LN" id="qPk-qB-lgG"/>
+                        <outlet property="timeLabel" destination="Cc6-cJ-TY3" id="cx0-Ox-5yH"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3Tw-Xj-99F" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -504,6 +527,9 @@
                                 <state key="normal" title="GO">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <segue destination="71w-1D-0vK" kind="show" identifier="showMap" id="RAt-jH-guj"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -545,4 +571,7 @@
             <point key="canvasLocation" x="428" y="125"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="mfu-tp-Xeg"/>
+    </inferredMetricsTieBreakers>
 </document>
