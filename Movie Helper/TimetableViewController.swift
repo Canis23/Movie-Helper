@@ -17,8 +17,8 @@ class TimetableViewController: UIViewController, UITableViewDataSource, UITableV
     var time:TimeInterval!
     override func viewDidLoad() {
         super.viewDidLoad()
-        choose.movieTheater = choose.theater
-        time = choose.g.getTime(theater: choose.movieTheater)
+        //choose.movieTheater = choose.theater
+        time = choose.g.getTime(theater: choose.theater)
         title = choose.theater.name
         self.tableView.estimatedRowHeight = 36.0
         self.tableView.rowHeight = UITableViewAutomaticDimension

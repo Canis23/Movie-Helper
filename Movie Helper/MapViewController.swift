@@ -68,8 +68,8 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
         
         
         let objectAnnotation = MKPointAnnotation()
-        objectAnnotation.coordinate = choose.movieTheater.location.coordinate
-        objectAnnotation.title = choose.movieTheater.name
+        objectAnnotation.coordinate = choose.theater.location.coordinate
+        objectAnnotation.title = choose.theater.name
         mapView.addAnnotation(objectAnnotation)
         
         print("\(myLocationManager.location)")
@@ -82,7 +82,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
         
         let markUserLocation = MKPlacemark(coordinate: CLLocationCoordinate2DMake((myLocationManager.location?.coordinate.latitude)!, (myLocationManager.location?.coordinate.longitude)!), addressDictionary: nil)
         
-        let markFinal = MKPlacemark(coordinate: CLLocationCoordinate2DMake(choose.movieTheater.location.coordinate.latitude, choose.movieTheater.location.coordinate.longitude), addressDictionary: nil)
+        let markFinal = MKPlacemark(coordinate: CLLocationCoordinate2DMake(choose.theater.location.coordinate.latitude, choose.theater.location.coordinate.longitude), addressDictionary: nil)
         
         directionRequest.source = MKMapItem(placemark: markUserLocation)
         directionRequest.destination = MKMapItem(placemark: markFinal)

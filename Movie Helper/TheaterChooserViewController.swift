@@ -14,13 +14,53 @@ class TheaterChooserViewController: UIViewController, UITableViewDataSource, UIT
     @IBOutlet var goButton: UIButton!
     
     var choose:Choose!
-
+    var times:[TimeInterval]! = []
+    var movieTimes:[[String]] = []
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        for theater in choose.city.theaters{
+            times.append(choose.g.getTime(theater: theater))
+            connectServer(success: done, theater: theater)
+        }
         
         title = choose.city.name
 
         // Do any additional setup after loading the view.
+    }
+    
+    //爬下Json
+    func connectServer(success: @escaping((_ data:[Any]) -> ()) , theater:Theater){
+        let url = URL(string: "http://selab2.ahkui.com:1000/api/MovieHelper/moviebug/\(choose.movie.id)/\(theater.num)/\(choose.version)")
+        let task = URLSession.shared.dataTask(with: url!){  data, response, error in
+            guard error == nil else {
+                print(error!)
+                return
+            }
+            guard let data = data else{
+                print("data is empty")
+                return
+            }
+            let json = try! JSONSerialization.jsonObject(with: data, options: [])
+            //print("\(self.choose.movie.id)/\(self.choose.theater.num)/\(self.choose.version)")
+            //print(json)
+            //if let data = json as! String {
+            success(json as! [Any])
+            //      }
+            
+        }
+        task.resume()
+    }
+    func done(_ data:[Any]){
+        for i in data {
+            
+            
+            let onedata = i as! [String:Any]
+            if let times = onedata["time"] as? [String] {
+               movieTimes.append(times)
+            }
+        }
     }
 
     override func didReceiveMemoryWarning() {
@@ -66,8 +106,72 @@ class TheaterChooserViewController: UIViewController, UITableViewDataSource, UIT
             /*...
              find the best theater and time
              ...*/
+            getBestTheater()
             destinationController.choose = choose
         }
+    }
+    
+    func parseDuration(timeString:String) -> TimeInterval {
+        guard !timeString.isEmpty else {
+            return 0
+        }
+        
+        var interval:Double = 0
+        
+        let parts = timeString.components(separatedBy: ":")
+        for (index, part) in parts.reversed().enumerated() {
+            interval += (Double(part) ?? 0) * pow(Double(60), Double(index))
+        }
+        
+        return interval
+    }
+    
+    func getBestTheater ()
+    {
+        var bestTheater:Theater!
+        var approachTime = ""
+        var bestTime = ""
+        var bestTimeX:TimeInterval = -1
+        
+        /*擷取現在時間*/
+        
+        var nowDate = Date()
+        nowDate.addTimeInterval(choose.bufferTime)//choose設定的20分鐘buffer time
+        let formatter = DateFormatter()
+        formatter.dateFormat = "HH:mm"
+        /*以上為共同時間*/
+        
+        for index in 0 ..< choose.city.theaters.count{
+            nowDate.addTimeInterval(times[index])
+            let nowTime = formatter.string(from: nowDate)
+            //計算各影城最優時間
+            for time in movieTimes[index]{
+                if nowTime < "24:00" {
+                    if time > nowTime{
+                        approachTime = time
+                        break
+                    }
+                }
+                else {
+                    if time > nowTime && time < "06:00"{
+                        approachTime = time
+                        break
+                    }
+                }
+            }
+            let time1 = parseDuration(timeString: approachTime)
+            let time2 = parseDuration(timeString: nowTime)
+            if (bestTimeX < time1 - time2) || bestTimeX<0 {
+                bestTime = approachTime
+                bestTimeX = time1 - time2
+                bestTheater = choose.city.theaters[index]
+                choose.arrivedTime = nowTime
+            }
+            
+        
+        choose.theater = bestTheater
+        choose.movieTime = bestTime
+            
     }
     
     
@@ -83,4 +187,5 @@ class TheaterChooserViewController: UIViewController, UITableViewDataSource, UIT
     }
     */
 
+}
 }

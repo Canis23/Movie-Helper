@@ -20,7 +20,6 @@ class Choose{
     var getData:Bool = false
     
     var movieTime = ""
-    var movieTheater:Theater!
     
     let g = GetRoute()
     
