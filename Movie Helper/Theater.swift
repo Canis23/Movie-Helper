@@ -14,10 +14,11 @@ class Theater {
     var name = ""
     var num = ""
     
-    //var location:CLLocation!
+    var location:CLLocation!
     
-    init(num:String,name:String) {
+    init(num:String,name:String,location:CLLocation!) {
         self.num = num
         self.name = name
+        self.location = location
     }
 }

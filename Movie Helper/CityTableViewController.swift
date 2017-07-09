@@ -45,6 +45,28 @@ class CityTableViewController: UITableViewController {
     /*var theaterLocations:[CLLocation] = [
         CLLocation(latitude: 37.785034, longitude: -122.406214), CLLocation(latitude: 25.037118, longitude: 121.566992), "台北京站威秀影城", "台北日新威秀影城", "板橋大遠百威秀影城", "林口MITSUI OUTLET PARK威秀影城", "林口MITSUI OUTLET PARK威秀影城(MAPPA)", "新竹大遠百威秀影城", "", "新竹巨城威秀影城", "頭份尚順威秀影城", "台中大遠百威秀影城", "台中TIGER CITY威秀影城", "", "", "台南大遠百威秀影城","台南南紡威秀影城", "", "高雄大遠百威秀影城"]*/
     
+    var theaterLocation:[CLLocation] = [
+        CLLocation(latitude:-1,longitude:-1),
+        CLLocation(latitude:25.035616,longitude:121.567148),
+        CLLocation(latitude:25.049363,longitude:121.517944),
+        CLLocation(latitude:25.45620,longitude:121.504463),
+        CLLocation(latitude:25.014073,longitude:121.467163),
+        CLLocation(latitude:25.070626,longitude:121.366323),
+        CLLocation(latitude:25.070626,longitude:121.366323),
+        CLLocation(latitude:24.802470,longitude:120.965276),
+        CLLocation(latitude:-1,longitude:-1),
+        CLLocation(latitude:24.809872,longitude:120.974803),
+        CLLocation(latitude:24.689139,longitude:120.903598),
+        CLLocation(latitude:24.164724,longitude:120.644626),
+        CLLocation(latitude:24.164405,longitude:120.644626),
+        CLLocation(latitude:-1,longitude:-1),
+        CLLocation(latitude:-1,longitude:-1),
+        CLLocation(latitude:22.995573,longitude:120.206080),
+        CLLocation(latitude:22.001491,longitude:120.233352),
+        CLLocation(latitude:-1,longitude:-1),
+        CLLocation(latitude:22.613245,longitude:120.304091)]
+    
+    
     var theaterNames:[String] = [
         "", "台北信義威秀影城", "台北京站威秀影城", "台北日新威秀影城", "板橋大遠百威秀影城", "林口MITSUI OUTLET PARK威秀影城", "林口MITSUI OUTLET PARK威秀影城(MAPPA)", "新竹大遠百威秀影城", "", "新竹巨城威秀影城", "頭份尚順威秀影城", "台中大遠百威秀影城", "台中TIGER CITY威秀影城", "", "", "台南大遠百威秀影城","台南南紡威秀影城", "", "高雄大遠百威秀影城"]
     
@@ -123,7 +145,7 @@ class CityTableViewController: UITableViewController {
                 choose.theaterNums = theaters
                 
                 for theaterNum in choose.theaterNums{
-                    let theaterNew = Theater(num:theaterNum, name:theaterNames[Int(theaterNum)!])
+                    let theaterNew = Theater(num:theaterNum, name:theaterNames[Int(theaterNum)!], location:theaterLocation[Int(theaterNum)!])
                     if(theaterNum == "1" || theaterNum == "2" || theaterNum == "3"){
                         cities[0][0].theaters.append(theaterNew)
                     }
