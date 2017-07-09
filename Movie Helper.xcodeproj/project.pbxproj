@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		13EAFB4E1F12874A0039D016 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 13EAFB4D1F12874A0039D016 /* CoreLocation.framework */; };
+		13EAFB501F12A6F70039D016 /* GetRoute.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13EAFB4F1F12A6F70039D016 /* GetRoute.swift */; };
 		13FC86381EFB1A3D006A1E7E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13FC86371EFB1A3D006A1E7E /* AppDelegate.swift */; };
 		13FC86401EFB1A3D006A1E7E /* Movie_Helper.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 13FC863E1EFB1A3D006A1E7E /* Movie_Helper.xcdatamodeld */; };
 		13FC86421EFB1A3D006A1E7E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13FC86411EFB1A3D006A1E7E /* Assets.xcassets */; };
@@ -35,6 +36,7 @@
 
 /* Begin PBXFileReference section */
 		13EAFB4D1F12874A0039D016 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		13EAFB4F1F12A6F70039D016 /* GetRoute.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GetRoute.swift; sourceTree = "<group>"; };
 		13FC86341EFB1A3D006A1E7E /* Movie Helper.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Movie Helper.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		13FC86371EFB1A3D006A1E7E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		13FC863F1EFB1A3D006A1E7E /* Movie_Helper.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Movie_Helper.xcdatamodel; sourceTree = "<group>"; };
@@ -118,6 +120,7 @@
 				13FC869F1F113366006A1E7E /* TimetableViewController.swift */,
 				13FC86A11F115311006A1E7E /* TimetableTableViewCell.swift */,
 				13FC86A31F120D8A006A1E7E /* Timetable.swift */,
+				13EAFB4F1F12A6F70039D016 /* GetRoute.swift */,
 			);
 			path = "Movie Helper";
 			sourceTree = "<group>";
@@ -227,6 +230,7 @@
 				13FC86901F0E6F74006A1E7E /* Choose.swift in Sources */,
 				13FC86A01F113366006A1E7E /* TimetableViewController.swift in Sources */,
 				13FC869C1F0F84DD006A1E7E /* MapViewController.swift in Sources */,
+				13EAFB501F12A6F70039D016 /* GetRoute.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

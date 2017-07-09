@@ -14,9 +14,11 @@ class TimetableViewController: UIViewController, UITableViewDataSource, UITableV
     @IBOutlet var goButton:UIButton!
     
     var choose:Choose!
-
+    var time:TimeInterval!
     override func viewDidLoad() {
         super.viewDidLoad()
+        choose.movieTheater = choose.theater
+        time = choose.g.getTime(theater: choose.movieTheater)
         title = choose.theater.name
         self.tableView.estimatedRowHeight = 36.0
         self.tableView.rowHeight = UITableViewAutomaticDimension
@@ -128,7 +130,6 @@ class TimetableViewController: UIViewController, UITableViewDataSource, UITableV
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "showMap" {
             let destinationController = segue.destination as! MapViewController
-            choose.movieTheater = choose.theater
             /*...
              find the best theater and time
              ...*/
@@ -139,10 +140,17 @@ class TimetableViewController: UIViewController, UITableViewDataSource, UITableV
     }
     
     func getMovieTime() {
-        let nowDate = Date()
+        var nowDate = Date()
+        print("\n\n\n\n\nnow:\(nowDate)")
+        print("time:\(choose.g.time)")
+        nowDate.addTimeInterval(choose.g.time) //到電影院要花費的時間
+        print("go:\(nowDate)")
+        nowDate.addTimeInterval(choose.bufferTime)//choose設定的20分鐘buffer time
+        print("arr:\(nowDate)\n\n\n\n\n")
         let formatter = DateFormatter()
         formatter.dateFormat = "HH:mm"
         let nowTime = formatter.string(from: nowDate)
+        choose.arrivedTime = nowTime
         for time in choose.timeTable[0].times{
             if nowTime < "24:00" {
                 if time > nowTime{

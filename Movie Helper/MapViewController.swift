@@ -17,15 +17,16 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
     
     var myLocationManager: CLLocationManager!
     var myAnnotation: MKPointAnnotation = MKPointAnnotation()
+    var myRoute: MKRoute!
     
     var choose: Choose!
 
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "Map"
-
+        
         // Do any additional setup after loading the view.
-        timeLabel.text = choose.movieTime
+        timeLabel.text = "預估到達時間:" + choose.arrivedTime + "\n電影放映時間:" + choose.movieTime
         
         //userlacation
         /*   最好版
@@ -43,7 +44,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
         let currentRegion:MKCoordinateRegion = MKCoordinateRegion( center: center.coordinate, span: currentLocationSpan)
         mapView.setRegion(currentRegion, animated: true)
         */
-        
+        //let g = GetRoute(theater: choose.movieTheater)
         
         //建立一個 CLLocationManager
         myLocationManager = CLLocationManager()
@@ -67,18 +68,53 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
         
         
         let objectAnnotation = MKPointAnnotation()
-        objectAnnotation.coordinate = CLLocation(latitude: 25.785034
-            , longitude: 122.406214).coordinate
-        objectAnnotation.title = "艋舺公園"
-        objectAnnotation.subtitle = "艋舺公園位於龍山寺旁邊，原名為「萬華十二號公園」。"
+        objectAnnotation.coordinate = choose.movieTheater.location.coordinate
+        objectAnnotation.title = choose.movieTheater.name
         mapView.addAnnotation(objectAnnotation)
+        
         print("\(myLocationManager.location)")
+        
+        mapView.userTrackingMode = MKUserTrackingMode.follow
 
         locationManager(manager: myLocationManager, didUpdateLocations: [myLocationManager.location!])
+        
+        let directionRequest = MKDirectionsRequest()
+        
+        let markUserLocation = MKPlacemark(coordinate: CLLocationCoordinate2DMake((myLocationManager.location?.coordinate.latitude)!, (myLocationManager.location?.coordinate.longitude)!), addressDictionary: nil)
+        
+        let markFinal = MKPlacemark(coordinate: CLLocationCoordinate2DMake(choose.movieTheater.location.coordinate.latitude, choose.movieTheater.location.coordinate.longitude), addressDictionary: nil)
+        
+        directionRequest.source = MKMapItem(placemark: markUserLocation)
+        directionRequest.destination = MKMapItem(placemark: markFinal)
+        
+        directionRequest.transportType = MKDirectionsTransportType.automobile
+        
+        let directions = MKDirections(request: directionRequest)
+        print("HAHAHAHAHAHA~~~")
+        directions.calculate(completionHandler: {
+            response, erro in
+            if erro == nil {
+            self.myRoute = response!.routes[0] as MKRoute
+            self.mapView.add(self.myRoute.polyline)
+            print("time:\(self.myRoute.expectedTravelTime)")
+            }
+        })
+        
+        
     }
     
+    func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
+        let myLineRenderer = MKPolylineRenderer(polyline: myRoute.polyline)
+        
+        myLineRenderer.strokeColor = UIColor.blue
+        
+        myLineRenderer.lineWidth = 3
+        
+        return myLineRenderer
+        
+    }
     
-    func locationManager(manager: CLLocationManager!, didUpdateLocations locations: [CLLocation]!) {
+    private func locationManager(manager: CLLocationManager!, didUpdateLocations locations: [CLLocation]!) {
         myLocationManager.stopUpdatingLocation()
         // 印出目前所在位置座標
         let currentLocation :CLLocation = locations[0] as CLLocation
@@ -130,31 +166,6 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
     }
     
     
-    func mapView(_ mapView: MKMapView,
-                 regionWillChangeAnimated animated: Bool) {
-        print("地圖縮放或滑動時")
-    }
-    
-    func mapViewDidFinishLoadingMap(_ mapView: MKMapView) {
-        print("載入地圖完成時")
-    }
-    
-    func mapView(_ mapView: MKMapView,
-                 annotationView view: MKAnnotationView,
-                 calloutAccessoryControlTapped control: UIControl) {
-        print("點擊大頭針的說明")
-    }
-    
-    func mapView(_ mapView: MKMapView,
-                 didSelect view: MKAnnotationView) {
-        print("點擊大頭針")
-    }
-    
-    func mapView(_ mapView: MKMapView,
-                 didDeselect view: MKAnnotationView) {
-        print("取消點擊大頭針")
-    }
-
     
     
     
