@@ -1,27 +1,22 @@
 //
-//  TheaterChooserTableViewController.swift
+//  MovieVersionTableViewController.swift
 //  Movie Helper
 //
-//  Created by Canis on 2017/6/29.
+//  Created by Canis on 2017/7/7.
 //  Copyright © 2017年 Canis. All rights reserved.
 //
 
 import UIKit
 
-//很明顯的這邊就是用來選電影院的呦～
-class TheaterChooserTableViewController: UITableViewController {
+class MovieVersionTableViewController: UITableViewController {
 
     var choose:Choose!
     
-    //我也不知道哪邊有哪些電影院,就先用這個當測試吧～
-    
-    //跟main.storyboard做差不多的事情
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        //你看這邊就可以把那個橘橘的設定成什麼城市了唷
-        self.title = choose.city?.name
 
+        self.title = "Version"
+        
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
@@ -36,38 +31,67 @@ class TheaterChooserTableViewController: UITableViewController {
 
     // MARK: - Table view data source
 
-    //這邊都是電影院也沒必要分類 , 所以return 1
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
         return 1
     }
-    
-    //不能確定他有幾間電影院啊 , 所以就交給陣列處理吧
+
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return choose.city.theaters.count
+        
+        return choose.movie.versions.count
     }
 
-    //這邊就可以設定每個Cell裡面的值
+    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as UITableViewCell
-        // 顯示的內容
+        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
+
+        // Configure the cell...
+        var versionNum:String
         if let myLabel = cell.textLabel {
-            myLabel.text = "\(choose.city.theaters[indexPath.row].name)"
+            versionNum = choose.movie.versions[indexPath.row]
+            if(versionNum == "1"){
+                myLabel.text = "數位版"
+            }
+            else if(versionNum == "2"){
+                myLabel.text = "數位3D"
+            }
+            else if(versionNum == "3"){
+                myLabel.text = "IMAX"
+            }
+            else if(versionNum == "4"){
+                myLabel.text = "IMAX 3D"
+            }
+            else if(versionNum == "8"){
+                myLabel.text = "4DX"
+            }
+            else if(versionNum == "9"){
+                myLabel.text = "4DX3D"
+            }
+            else if(versionNum == "10"){
+                myLabel.text = "MAPPA"
+            }
+            else if(versionNum == "12"){
+                myLabel.text = "現場演出"
+            }
+            else{
+                myLabel.text = versionNum
+            }
         }
-        
         
         return cell
     }
+ 
     
-    //Cell就是按來選電影院的啊 , 所以要先設定他按了會發生什麼事情唷
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "showTimetable" {
+        if segue.identifier == "showCityChooser" {
             if let indexPath = tableView.indexPathForSelectedRow {
-                let destinationController = segue.destination as! TimetableTableViewController
-                choose.theater = choose.city.theaters[indexPath.row]
+                let destinationController = segue.destination as! CityTableViewController
+                choose.version = choose.movie.versions[indexPath.row]
                 destinationController.choose = choose
-                
+                //TheaterChooserTableViewController那邊用一個String來接這邊傳過去的cityName
+                //然後就可以把它設定成title摟喔喔喔喔喔
+                //沒錯就是那個橘橘的
             }
         }
     }

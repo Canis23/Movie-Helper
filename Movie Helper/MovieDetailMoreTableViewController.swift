@@ -54,19 +54,19 @@ class MovieDetailMoreTableViewController: UITableViewController {
         switch indexPath.row {
         case 0:
             cell.fieldLabel.text = "導演"
-            cell.valueLabel.text = "someone"
+            cell.valueLabel.text = choose.movie.director
         case 1:
             cell.fieldLabel.text = "主演"
-            cell.valueLabel.text = "someone"
+            cell.valueLabel.text = choose.movie.actor
         case 2:
             cell.fieldLabel.text = "片長"
-            cell.valueLabel.text = "a long long time~~~~"
+            cell.valueLabel.text = choose.movie.time
         case 3:
             cell.fieldLabel.text = "分級"
-            cell.valueLabel.text = "XX級"
+            cell.valueLabel.text = choose.movie.rating[0]
         case 4:
             cell.fieldLabel.text = "簡介"
-            cell.valueLabel.text = "something\nomething"
+            cell.valueLabel.text = choose.movie.introduction
         default:
             cell.fieldLabel.text = ""
             cell.valueLabel.text = ""

@@ -12,8 +12,7 @@ import Foundation
 class City {
     var name = ""
     var theaters:[Theater] = []
-    init(name:String, theaters:[Theater]) {
+    init(name:String) {
         self.name = name
-        self.theaters = theaters
     }
 }

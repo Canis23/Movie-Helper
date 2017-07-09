@@ -36,9 +36,52 @@ class MovieDetailViewController: UIViewController {
         movieGOButton.layer.cornerRadius = 10 //圓角
         movieGOButton.layer.borderWidth = 1 //邊框
         movieGOButton.layer.borderColor = UIColor.lightGray.cgColor //顏色喔喔喔
-        
-
-        
+        connectServer(success: done)
+    }
+    
+    func connectServer(success: @escaping((_ data:[Any]) -> ())){
+        let url = URL(string: "http://selab2.ahkui.com:1000/api/MovieHelper/moviebug/\(movie.id)")
+        let task = URLSession.shared.dataTask(with: url!){  data, response, error in
+            guard error == nil else {
+                print(error!)
+                return
+            }
+            guard let data = data else{
+                print("data is empty")
+                return
+            }
+            let json = try! JSONSerialization.jsonObject(with: data, options: [])
+                     //   print(json)
+                     //let data = json as! String {
+            success(json as! [Any])
+              //      }
+            
+        }
+        task.resume()
+    }
+    
+    func done(_ data:[Any]){
+            for i in data {
+            
+            let onedata = i as! [String:Any]
+            if let intro = onedata["intro"] as? String {
+                choose.movie.introduction = intro
+            }
+            if let versions = onedata["movietype"] as? [String] {
+                choose.movie.versions = versions.sorted()
+            }
+            if let actor = onedata["actor"] as? String {
+                choose.movie.actor = actor
+            }
+            if let dirtor = onedata["dirtor"] as? String {
+                choose.movie.director = dirtor
+            }
+            
+            
+            //movies.append(dataa)
+            
+        }
+        //print(movies.count)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -55,12 +98,9 @@ class MovieDetailViewController: UIViewController {
     
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "showCityChooser" {
-                let destinationController = segue.destination as! CityTableViewController
+        if segue.identifier == "showVersionChooser" {
+                let destinationController = segue.destination as! MovieVersionTableViewController
                 destinationController.choose = choose
-                //TheaterChooserTableViewController那邊用一個String來接這邊傳過去的cityName
-                //然後就可以把它設定成title摟喔喔喔喔喔
-                //沒錯就是那個橘橘的
         }
         else if segue.identifier == "showDetailMore" {
             let destinationController = segue.destination as! MovieDetailMoreTableViewController

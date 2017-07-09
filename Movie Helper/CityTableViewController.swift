@@ -26,9 +26,9 @@ class CityTableViewController: UITableViewController {
     ]*/
     
     /*
-     1”>台北信義威秀影城
-     2”>台北京站威秀影城
-     3">台北日新威秀影城
+     1”>台北信義威秀影城 Theater(name:"台北信義威秀影城"),
+     2”>台北京站威秀影城 Theater(name:"台北京站威秀影城"),
+     3">台北日新威秀影城 Theater(name:"台北日新威秀影城"),
      4”>板橋大遠百威秀影城
      5">林口MITSUI OUTLET PARK威秀影城
      7”>新竹大遠百威秀影城
@@ -41,31 +41,35 @@ class CityTableViewController: UITableViewController {
      18">高雄大遠百威秀影城
      */
     
+    var theaterNames:[String] = [
+        "", "台北信義威秀影城", "台北京站威秀影城", "台北日新威秀影城", "板橋大遠百威秀影城", "林口MITSUI OUTLET PARK威秀影城", "林口MITSUI OUTLET PARK威秀影城(MAPPA)", "新竹大遠百威秀影城", "", "新竹巨城威秀影城", "頭份尚順威秀影城", "台中大遠百威秀影城", "台中TIGER CITY威秀影城", "", "", "台南大遠百威秀影城","台南南紡威秀影城", "", "高雄大遠百威秀影城"]
+    
+    
     var cities:[[City]] = [
-        [City(name:"台北", theaters:[Theater(name:"台北信義威秀影城"), Theater(name:"台北京站威秀影城"), Theater(name:"台北日新威秀影城")]),
-         City(name:"新北", theaters:[Theater(name:"板橋大遠百威秀影城"), Theater(name:"林口MITSUI OUTLET PARK威秀影城")]),
-         City(name:"桃園", theaters:[]),
-         City(name:"基隆", theaters:[]),
-         City(name:"宜蘭", theaters:[]),
-         City(name:"新竹", theaters:[Theater(name:"新竹大遠百威秀影城"), Theater(name:"新竹巨城威秀影城")])],
+        [City(name:"台北"),
+         City(name:"新北"),
+         City(name:"桃園"),
+         City(name:"基隆"),
+         City(name:"宜蘭"),
+         City(name:"新竹")],
         
-        [City(name:"苗栗", theaters:[Theater(name:"頭份尚順威秀影城")]),
-         City(name:"台中", theaters:[Theater(name:"台中大遠百威秀影城"), Theater(name:"台中TIGER CITY威秀影城")]),
-         City(name:"南投", theaters:[]),
-         City(name:"彰化", theaters:[]),
-         City(name:"雲林", theaters:[])],
+        [City(name:"苗栗"),
+         City(name:"台中"),
+         City(name:"南投"),
+         City(name:"彰化"),
+         City(name:"雲林")],
         
-        [City(name:"嘉義", theaters:[]),
-         City(name:"台南", theaters:[Theater(name:"台南大遠百威秀影城"), Theater(name:"台南南紡威秀影城")]),
-         City(name:"高雄", theaters:[Theater(name:"高雄大遠百威秀影城")]),
-         City(name:"屏東", theaters:[])],
+        [City(name:"嘉義"),
+         City(name:"台南"),
+         City(name:"高雄"),
+         City(name:"屏東")],
         
-        [City(name:"台東", theaters:[]),
-         City(name:"花蓮", theaters:[])],
+        [City(name:"台東"),
+         City(name:"花蓮")],
         
-        [City(name:"澎湖", theaters:[]),
-         City(name:"金門", theaters:[]),
-         City(name:"馬祖", theaters:[])]
+        [City(name:"澎湖"),
+         City(name:"金門"),
+         City(name:"馬祖")]
     ]
     
     //差不多就main.storyboard可以做的事情
@@ -73,7 +77,7 @@ class CityTableViewController: UITableViewController {
         super.viewDidLoad()
         
         //上面那個橘橘的 可以設定他的title
-        self.title = "選擇地區"
+        self.title = "\(choose.version) 選擇地區"
         
 
         // Uncomment the following line to preserve selection between presentations
@@ -81,6 +85,73 @@ class CityTableViewController: UITableViewController {
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
+        
+        connectServer(success: done)
+        
+    }
+    
+    func connectServer(success: @escaping((_ data:[Any]) -> ())){
+        let url = URL(string: "http://selab2.ahkui.com:1000/api/MovieHelper/moviebug/\(choose.movie.id)/\(choose.version)")
+        let task = URLSession.shared.dataTask(with: url!){  data, response, error in
+            guard error == nil else {
+                print(error!)
+                return
+            }
+            guard let data = data else{
+                print("data is empty")
+                return
+            }
+            let json = try! JSONSerialization.jsonObject(with: data, options: [])
+            //   print(json)
+            //let data = json as! String {
+            success(json as! [Any])
+            //      }
+            
+        }
+        task.resume()
+    }
+    
+    func done(_ data:[Any]){
+        for i in data {
+            
+            let onedata = i as! [String:Any]
+            if let theaters = onedata["theator"] as? [String] {
+                choose.theaterNums = theaters
+                
+                for theaterNum in choose.theaterNums{
+                    let theaterNew = Theater(num:theaterNum, name:theaterNames[Int(theaterNum)!])
+                    if(theaterNum == "1" || theaterNum == "2" || theaterNum == "3"){
+                        cities[0][0].theaters.append(theaterNew)
+                    }
+                    else if(theaterNum == "4"){
+                        cities[0][1].theaters.append(theaterNew)
+                    }
+                    else if(theaterNum == "5" || theaterNum == "6"){
+                        cities[0][2].theaters.append(theaterNew)
+                    }
+                    else if(theaterNum == "7" || theaterNum == "9"){
+                        cities[0][5].theaters.append(theaterNew)
+                    }
+                    else if(theaterNum == "10"){
+                        cities[1][0].theaters.append(theaterNew)
+                    }
+                    else if(theaterNum == "11" || theaterNum == "12"){
+                        cities[1][1].theaters.append(theaterNew)
+                    }
+                    else if(theaterNum == "15" || theaterNum == "16"){
+                        cities[2][1].theaters.append(theaterNew)
+                    }
+                    else if(theaterNum == "18"){
+                        cities[2][2].theaters.append(theaterNew)
+                    }
+                }
+                
+            }
+            
+            //movies.append(dataa)
+            
+        }
+        //print(movies.count)
     }
 
     override func didReceiveMemoryWarning() {
@@ -109,7 +180,7 @@ class CityTableViewController: UITableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as UITableViewCell
         // 顯示的內容
         if let myLabel = cell.textLabel {
-            myLabel.text = "\(cities[indexPath.section][indexPath.row].name)"
+            myLabel.text = cities[indexPath.section][indexPath.row].name
         }
         
         return cell
@@ -136,14 +207,15 @@ class CityTableViewController: UITableViewController {
         return title
     }
     
+    
     //點了Cell會發生什麼事情啊ㄎㄎ
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "showMovieTheaterChooser" {
+        if segue.identifier == "showTheaterChooser" {
             if let indexPath = tableView.indexPathForSelectedRow {
-                let destinationController = segue.destination as! TheaterChooserTableViewController
+                let destinationController = segue.destination as! TheaterChooserViewController
                 choose.city = cities[indexPath.section][indexPath.row]
                 destinationController.choose = choose
-                //TheaterChooserTableViewController那邊用一個String來接這邊傳過去的cityName
+                //TheaterChooserViewController那邊用一個String來接這邊傳過去的cityName
                 //然後就可以把它設定成title摟喔喔喔喔喔
                 //沒錯就是那個橘橘的
             }

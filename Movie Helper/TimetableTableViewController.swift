@@ -12,6 +12,8 @@ class TimetableTableViewController: UITableViewController {
 
     var choose:Choose!
     
+    //
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         

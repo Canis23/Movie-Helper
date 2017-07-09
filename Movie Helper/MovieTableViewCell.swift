@@ -15,6 +15,9 @@ class MovieTableViewCell: UITableViewCell {
     
     @IBOutlet var nameLabel: UILabel!
     @IBOutlet var movieImageView: UIImageView!
+    @IBOutlet var idLabel: UILabel!
+    @IBOutlet var timeLabel: UILabel!
+    @IBOutlet var typeLabel: UILabel!
     
     
     override func awakeFromNib() {

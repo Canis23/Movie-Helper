@@ -10,18 +10,23 @@ import Foundation
 
 //Movie class
 class Movie{
+    
+    var id = ""
     var name = ""
     var image = ""
     var time = ""
-    var rating = ""
+    var rating:[String] = [""]
     
     var director = ""//導演
     var actor = ""//演員
     var introduction = ""//簡介
+    var versions:[String] = []
     
     var imageData = NSData()
-    var isVisited = false
-    init(name:String, image:String){
+    
+    init() {}
+    
+    /*init(name:String, image:String){
         self.name = name
         self.image = image
         
@@ -30,5 +35,12 @@ class Movie{
         
         self.imageData = nsdata!
         
+    }*/
+    
+    func toNSData() {
+        let url  = URL(string: image)
+        let nsdata = NSData(contentsOf: url!)
+        self.imageData = nsdata!
     }
+    
 }

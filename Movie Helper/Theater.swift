@@ -10,8 +10,10 @@ import Foundation
 
 class Theater {
     var name = ""
+    var num = ""
     
-    init(name:String) {
+    init(num:String,name:String) {
+        self.num = num
         self.name = name
     }
 }

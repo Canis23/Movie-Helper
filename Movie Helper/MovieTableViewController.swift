@@ -18,17 +18,16 @@ class MovieTableViewController: UITableViewController, UISearchResultsUpdating{
     
     var searchResults:[Movie] = []
     
-    //測試用電影陣列
-    var movies:[Movie] = [Movie(name: "Maleficent", image: "http://web.vscinemas.com.tw/upload/film/film_20170621006.jpg")]
-        /*, Movie(name: "ENEMY", image: "ENEMY.jpg"), Movie(name: "天后開麥拉", image: "天后開麥拉.jpg"), Movie(name: "神偷奶爸3", image: "神偷奶爸3.jpg"), Movie(name: "變形金剛5", image: "變形金剛5.jpg"), Movie(name: "死小孩", image: "死小孩.jpg"), Movie(name: "接線員", image: "接線員.jpg")]*/
+    var movies:[Movie] = []
     
-    //
+    
+    
     override func viewWillAppear(_ animated: Bool) {
         tableView.reloadData()
         navigationController?.hidesBarsOnSwipe = true
     }
     
-    //應該跟在main.storyboard能做的事情差不多ㄏ
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -41,6 +40,78 @@ class MovieTableViewController: UITableViewController, UISearchResultsUpdating{
         searchController.searchBar.placeholder = "Search movies..."
         searchController.searchBar.tintColor = UIColor.white
         searchController.searchBar.barTintColor = UIColor.black
+        connectServer(success: done)
+    }
+    
+    func connectServer(success: @escaping((_ data:[Any]) -> ())){
+        let url = URL(string: "http://selab2.ahkui.com:1000/api/MovieHelper/moviebug/movieid")
+        let task = URLSession.shared.dataTask(with: url!){  data, response, error in
+            guard error == nil else {
+                print(error!)
+                return
+            }
+            guard let data = data else{
+                print("data is empty")
+                return
+            }
+            let json = try! JSONSerialization.jsonObject(with: data, options: [])
+            //            print(json)
+            //        if let data = json as! String {
+            success(json as! [Any])
+            //        }
+            
+        }
+        task.resume()
+    }
+    func done(_ data:[Any]){
+        for i in data {
+            let dataa:Movie = Movie()
+            
+            let onedata = i as! [String:Any]
+            if let id = onedata["id"] as? String {
+                dataa.id = id
+            }
+            if let lenth = onedata["lenth"] as? String {
+                if(lenth == ""){
+                    dataa.time = "-"
+                }
+                else{
+                    dataa.time = lenth
+                }
+            }
+            if let imgurl = onedata["imgurl"] as? String {
+                dataa.image = imgurl
+                dataa.toNSData()
+            }
+            if let title = onedata["title"] as? String {
+                dataa.name = title
+            }
+            if let type = onedata["type"] as? [String] {
+                if(type[0] == "general"){
+                    dataa.rating[0] = "普遍級"
+                }
+                else if(type[0] == "childview"){
+                    dataa.rating[0] = "護片級"
+                }
+                else if(type[0] == "bigchild"){
+                    dataa.rating[0] = "輔導級12+"
+                }
+                else if(type[0] == "teenager"){
+                    dataa.rating[0] = "輔導級15+"
+                }
+                //else if(type[0] == ""){
+                //    dataa.rating[0] = ""
+                //}
+                else{
+                    dataa.rating[0] = "-"
+                }
+            }
+            movies.append(dataa)
+            
+            //print(dataa.id)
+        }
+        //print(movies.count)
+        tableView.reloadData()
     }
     
     //
@@ -78,15 +149,21 @@ class MovieTableViewController: UITableViewController, UISearchResultsUpdating{
         // Configure the cell...
         //  cell.accessoryType = .disclosureIndicator
         
-        //let movie = (searchController.isActive) ? searchResults[indexPath.row] : movies[indexPath.row]
+        var movie = movies[indexPath.row]
+        
+        movie = (searchController.isActive) ? searchResults[indexPath.row] : movies[indexPath.row]
         
         //Label setting
-        cell.nameLabel?.text = movies[indexPath.row].name
+        cell.nameLabel?.text = movie.name
         cell.nameLabel.layer.cornerRadius = 10
         cell.nameLabel.layer.backgroundColor = UIColor.gray.cgColor
         
         //imageView Setting
-        cell.movieImageView.image = UIImage(data: movies[indexPath.row].imageData as Data)
+        cell.movieImageView.image = UIImage(data: movie.imageData as Data)
+        
+        cell.idLabel?.text = " ID: \(movie.id)"
+        cell.timeLabel?.text = " 片長: \(movie.time)"
+        cell.typeLabel?.text = movie.rating[0]
         
         
         

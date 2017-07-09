@@ -10,9 +10,14 @@ import Foundation
 
 class Choose{
     var movie:Movie
-    var kind = "0000000"
+    var version = ""
     var city:City!
     var theater:Theater!
+    
+    var theaterNums:[String]!
+    
+    var timeTable:[Timetable] = []
+    var getData:Bool = false
     
     init(movie:Movie) {
         self.movie = movie
