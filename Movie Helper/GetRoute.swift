@@ -66,6 +66,9 @@ class GetRoute:NSObject, CLLocationManagerDelegate{
             if erro == nil {
                 route = response!.routes[0] as MKRoute
                 time = route.expectedTravelTime
+                while !directions.isCalculating {}
+                self.myRoute = response!.routes[0] as MKRoute
+                self.time = self.myRoute.expectedTravelTime
                 print("GetRoute time:\(self.myRoute.expectedTravelTime)")
             }
         })
