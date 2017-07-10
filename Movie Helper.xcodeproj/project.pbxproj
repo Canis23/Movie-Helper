@@ -165,6 +165,7 @@
 				TargetAttributes = {
 					13FC86331EFB1A3D006A1E7E = {
 						CreatedOnToolsVersion = 8.2.1;
+						DevelopmentTeam = E6TUTZ3QBB;
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.Maps.iOS = {
@@ -354,6 +355,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = "";
+				DEVELOPMENT_TEAM = E6TUTZ3QBB;
 				INFOPLIST_FILE = "Movie Helper/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "Canis.Movie-Helper";
@@ -366,6 +368,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = "";
+				DEVELOPMENT_TEAM = E6TUTZ3QBB;
 				INFOPLIST_FILE = "Movie Helper/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "Canis.Movie-Helper";

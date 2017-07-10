@@ -38,9 +38,11 @@ class GetRoute:NSObject, CLLocationManagerDelegate{
     
     
     
-    func locationManager(manager: CLLocationManager!, didUpdateLocations locations: [CLLocation]!) {
+    func locationManager(manager: CLLocationManager!, didUpdateLocations locations: [CLLocation]!) -> TimeInterval{
         myLocationManager.stopUpdatingLocation()
         // 印出目前所在位置座標
+        var time:TimeInterval! = 0
+        var route = MKRoute()
         let currentLocation :CLLocation = locations[0] as CLLocation
         print("\(currentLocation.coordinate.latitude)")
         print(", \(currentLocation.coordinate.longitude)")
@@ -62,12 +64,12 @@ class GetRoute:NSObject, CLLocationManagerDelegate{
         directions.calculate(completionHandler: {
             response, erro in
             if erro == nil {
-                while directions.isCalculating {}
-                self.myRoute = response!.routes[0] as MKRoute
-                self.time = self.myRoute.expectedTravelTime
+                route = response!.routes[0] as MKRoute
+                time = route.expectedTravelTime
                 print("GetRoute time:\(self.myRoute.expectedTravelTime)")
             }
         })
+        return route.expectedTravelTime
     }
     func ask() {
         // 首次使用 向使用者詢問定位自身位置權限

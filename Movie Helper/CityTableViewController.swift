@@ -27,9 +27,9 @@ class CityTableViewController: UITableViewController {
     ]*/
     
     /*
-     1”>台北信義威秀影城 Theater(name:"台北信義威秀影城"),
-     2”>台北京站威秀影城 Theater(name:"台北京站威秀影城"),
-     3">台北日新威秀影城 Theater(name:"台北日新威秀影城"),
+     1”>台北信義威秀影城
+     2”>台北京站威秀影城
+     3">台北日新威秀影城
      4”>板橋大遠百威秀影城
      5">林口MITSUI OUTLET PARK威秀影城
      7”>新竹大遠百威秀影城
@@ -46,29 +46,49 @@ class CityTableViewController: UITableViewController {
         CLLocation(latitude: 37.785034, longitude: -122.406214), CLLocation(latitude: 25.037118, longitude: 121.566992), "台北京站威秀影城", "台北日新威秀影城", "板橋大遠百威秀影城", "林口MITSUI OUTLET PARK威秀影城", "林口MITSUI OUTLET PARK威秀影城(MAPPA)", "新竹大遠百威秀影城", "", "新竹巨城威秀影城", "頭份尚順威秀影城", "台中大遠百威秀影城", "台中TIGER CITY威秀影城", "", "", "台南大遠百威秀影城","台南南紡威秀影城", "", "高雄大遠百威秀影城"]*/
     
     var theaterLocation:[CLLocation] = [
-        CLLocation(latitude:-1,longitude:-1),
-        CLLocation(latitude:25.035616,longitude:121.567148),
-        CLLocation(latitude:25.049363,longitude:121.517944),
-        CLLocation(latitude:25.45620,longitude:121.504463),
-        CLLocation(latitude:25.014073,longitude:121.467163),
-        CLLocation(latitude:25.070626,longitude:121.366323),
-        CLLocation(latitude:25.070626,longitude:121.366323),
-        CLLocation(latitude:24.802470,longitude:120.965276),
-        CLLocation(latitude:-1,longitude:-1),
-        CLLocation(latitude:24.809872,longitude:120.974803),
-        CLLocation(latitude:24.689139,longitude:120.903598),
-        CLLocation(latitude:24.164724,longitude:120.644626),
-        CLLocation(latitude:24.164405,longitude:120.644626),
-        CLLocation(latitude:-1,longitude:-1),
-        CLLocation(latitude:-1,longitude:-1),
-        CLLocation(latitude:22.995573,longitude:120.206080),
-        CLLocation(latitude:22.001491,longitude:120.233352),
-        CLLocation(latitude:-1,longitude:-1),
-        CLLocation(latitude:22.613245,longitude:120.304091)]
+        CLLocation(latitude:-1,longitude:-1),               //0
+        CLLocation(latitude:25.035616,longitude:121.567148),//1
+        CLLocation(latitude:25.049363,longitude:121.517944),//2
+        CLLocation(latitude:25.45620,longitude:121.504463), //3
+        CLLocation(latitude:25.014073,longitude:121.467163),//4
+        CLLocation(latitude:25.070626,longitude:121.366323),//5
+        CLLocation(latitude:25.070626,longitude:121.366323),//6
+        CLLocation(latitude:24.802470,longitude:120.965276),//7
+        CLLocation(latitude:-1,longitude:-1),               //8
+        //CLLocation(latitude:24.809872,longitude:120.974803),//9
+        //CLLocation(latitude:24.689139,longitude:120.903598),//10
+        CLLocation(latitude:24.143657,longitude:120.675268),//9'
+        CLLocation(latitude:24.165257,longitude:120.643708),//10'
+        CLLocation(latitude:24.164724,longitude:120.644626),//11
+        CLLocation(latitude:24.164405,longitude:120.644626),//12
+        CLLocation(latitude:-1,longitude:-1),               //13
+        CLLocation(latitude:-1,longitude:-1),               //14
+        CLLocation(latitude:22.995573,longitude:120.206080),//15
+        CLLocation(latitude:22.001491,longitude:120.233352),//16
+        CLLocation(latitude:-1,longitude:-1),               //17
+        CLLocation(latitude:22.613245,longitude:120.304091)]//18
     
     
     var theaterNames:[String] = [
-        "", "台北信義威秀影城", "台北京站威秀影城", "台北日新威秀影城", "板橋大遠百威秀影城", "林口MITSUI OUTLET PARK威秀影城", "林口MITSUI OUTLET PARK威秀影城(MAPPA)", "新竹大遠百威秀影城", "", "新竹巨城威秀影城", "頭份尚順威秀影城", "台中大遠百威秀影城", "台中TIGER CITY威秀影城", "", "", "台南大遠百威秀影城","台南南紡威秀影城", "", "高雄大遠百威秀影城"]
+        "",
+        "台北信義威秀影城",
+        "台北京站威秀影城",
+        "台北日新威秀影城",
+        "板橋大遠百威秀影城",
+        "林口MITSUI OUTLET PARK威秀影城",
+        "林口MITSUI OUTLET PARK威秀影城(MAPPA)",
+        "新竹大遠百威秀影城",
+        "",
+        "日日新大戲院",
+        "台中新光影城",
+        "台中大遠百威秀影城",
+        "台中TIGER CITY威秀影城",
+        "",
+        "",
+        "台南大遠百威秀影城",
+        "台南南紡威秀影城",
+        "",
+        "高雄大遠百威秀影城"]
     
     
     var cities:[[City]] = [
@@ -155,13 +175,13 @@ class CityTableViewController: UITableViewController {
                     else if(theaterNum == "5" || theaterNum == "6"){
                         cities[0][2].theaters.append(theaterNew)
                     }
-                    else if(theaterNum == "7" || theaterNum == "9"){
+                    else if(theaterNum == "7"){ //|| theaterNum == "9"){
                         cities[0][5].theaters.append(theaterNew)
                     }
-                    else if(theaterNum == "10"){
-                        cities[1][0].theaters.append(theaterNew)
-                    }
-                    else if(theaterNum == "11" || theaterNum == "12"){
+                   // else if(theaterNum == "10"){
+                   //     cities[1][0].theaters.append(theaterNew)
+                   // }
+                    else if(theaterNum == "9" || theaterNum == "10" || theaterNum == "11" || theaterNum == "12"){
                         cities[1][1].theaters.append(theaterNew)
                     }
                     else if(theaterNum == "15" || theaterNum == "16"){

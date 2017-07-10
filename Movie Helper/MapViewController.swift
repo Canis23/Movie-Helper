@@ -23,7 +23,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        title = "Map"
+        title = choose.theater.name
         
         // Do any additional setup after loading the view.
         timeLabel.text = "預估到達時間:" + choose.arrivedTime + "\n電影放映時間:" + choose.movieTime
