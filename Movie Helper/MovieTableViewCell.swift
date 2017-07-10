@@ -15,7 +15,6 @@ class MovieTableViewCell: UITableViewCell {
     
     @IBOutlet var nameLabel: UILabel!
     @IBOutlet var movieImageView: UIImageView!
-    @IBOutlet var idLabel: UILabel!
     @IBOutlet var timeLabel: UILabel!
     @IBOutlet var typeLabel: UILabel!
     
@@ -24,7 +23,7 @@ class MovieTableViewCell: UITableViewCell {
         super.awakeFromNib()
         // Initialization code
         self.layoutMargins = UIEdgeInsets.zero
-        self.nameLabel.layer.backgroundColor = UIColor.gray.cgColor
+        //self.nameLabel.layer.backgroundColor = UIColor.gray.cgColor
         self.nameLabel.layer.borderWidth = 0
         self.nameLabel.layer.cornerRadius = 10
         

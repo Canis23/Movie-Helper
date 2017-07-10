@@ -21,7 +21,10 @@ class TheaterChooserViewController: UIViewController, UITableViewDataSource, UIT
     override func viewDidLoad() {
         super.viewDidLoad()
         for theater in choose.city.theaters{
-            times.append(choose.g.getTime(theater: theater))
+            let time = choose.g.getTime(theater: theater)
+            print("after GetRoute:\(time)")
+            print("ch's\(choose.g.time)")
+            times.append(time)
             connectServer(success: done, theater: theater)
         }
         
@@ -142,7 +145,10 @@ class TheaterChooserViewController: UIViewController, UITableViewDataSource, UIT
         /*以上為共同時間*/
         
         for index in 0 ..< choose.city.theaters.count{
+            
             nowDate.addTimeInterval(times[index])
+            print("TheaterChooser\(times[index])")
+            
             let nowTime = formatter.string(from: nowDate)
             //計算各影城最優時間
             for time in movieTimes[index]{
@@ -167,7 +173,7 @@ class TheaterChooserViewController: UIViewController, UITableViewDataSource, UIT
                 bestTheater = choose.city.theaters[index]
                 choose.arrivedTime = nowTime
             }
-            
+        }
         
         choose.theater = bestTheater
         choose.movieTime = bestTime
@@ -187,5 +193,4 @@ class TheaterChooserViewController: UIViewController, UITableViewDataSource, UIT
     }
     */
 
-}
 }

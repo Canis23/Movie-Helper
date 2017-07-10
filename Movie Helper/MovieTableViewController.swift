@@ -156,12 +156,11 @@ class MovieTableViewController: UITableViewController, UISearchResultsUpdating{
         //Label setting
         cell.nameLabel?.text = movie.name
         cell.nameLabel.layer.cornerRadius = 10
-        cell.nameLabel.layer.backgroundColor = UIColor.gray.cgColor
+        //cell.nameLabel.layer.backgroundColor = UIColor.gray.cgColor
         
         //imageView Setting
         cell.movieImageView.image = UIImage(data: movie.imageData as Data)
         
-        cell.idLabel?.text = " ID: \(movie.id)"
         cell.timeLabel?.text = " 片長: \(movie.time)"
         cell.typeLabel?.text = movie.rating[0]
         
