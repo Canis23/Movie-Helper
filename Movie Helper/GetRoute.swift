@@ -62,7 +62,7 @@ class GetRoute:NSObject, CLLocationManagerDelegate{
         directions.calculate(completionHandler: {
             response, erro in
             if erro == nil {
-                while directions.isCalculating {}
+                while !directions.isCalculating {}
                 self.myRoute = response!.routes[0] as MKRoute
                 self.time = self.myRoute.expectedTravelTime
                 print("GetRoute time:\(self.myRoute.expectedTravelTime)")
