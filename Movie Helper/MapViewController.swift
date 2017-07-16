@@ -25,6 +25,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
         super.viewDidLoad()
         title = choose.theater.name
         
+        
         // Do any additional setup after loading the view.
         timeLabel.text = "預估到達時間:" + choose.arrivedTime + "\n電影放映時間:" + choose.movieTime
         
@@ -72,7 +73,6 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
         objectAnnotation.title = choose.theater.name
         mapView.addAnnotation(objectAnnotation)
         
-        print("\(myLocationManager.location)")
         
         mapView.userTrackingMode = MKUserTrackingMode.follow
 
@@ -90,13 +90,11 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
         directionRequest.transportType = MKDirectionsTransportType.automobile
         
         let directions = MKDirections(request: directionRequest)
-        print("HAHAHAHAHAHA~~~")
         directions.calculate(completionHandler: {
             response, erro in
             if erro == nil {
             self.myRoute = response!.routes[0] as MKRoute
             self.mapView.add(self.myRoute.polyline)
-            print("time:\(self.myRoute.expectedTravelTime)")
             }
         })
         

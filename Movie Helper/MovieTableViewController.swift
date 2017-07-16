@@ -23,7 +23,6 @@ class MovieTableViewController: UITableViewController, UISearchResultsUpdating{
     
     
     override func viewWillAppear(_ animated: Bool) {
-        tableView.reloadData()
         navigationController?.hidesBarsOnSwipe = true
     }
     
@@ -41,6 +40,7 @@ class MovieTableViewController: UITableViewController, UISearchResultsUpdating{
         searchController.searchBar.tintColor = UIColor.white
         searchController.searchBar.barTintColor = UIColor.black
         connectServer(success: done)
+        
     }
     
     func connectServer(success: @escaping((_ data:[Any]) -> ())){
@@ -55,7 +55,7 @@ class MovieTableViewController: UITableViewController, UISearchResultsUpdating{
                 return
             }
             let json = try! JSONSerialization.jsonObject(with: data, options: [])
-            //            print(json)
+                        print(json)
             //        if let data = json as! String {
             success(json as! [Any])
             //        }
@@ -111,7 +111,9 @@ class MovieTableViewController: UITableViewController, UISearchResultsUpdating{
             //print(dataa.id)
         }
         //print(movies.count)
-        tableView.reloadData()
+        DispatchQueue.main.async {
+            self.tableView.reloadData()
+        }
     }
     
     //

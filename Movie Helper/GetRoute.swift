@@ -14,7 +14,8 @@ class GetRoute:NSObject, CLLocationManagerDelegate{
     var myLocationManager: CLLocationManager!
     var myAnnotation: MKPointAnnotation = MKPointAnnotation()
     var myRoute = MKRoute()
-    var time:TimeInterval = 0
+    var time:TimeInterval! = 0
+    
     
     var theater:Theater!
     
@@ -41,11 +42,11 @@ class GetRoute:NSObject, CLLocationManagerDelegate{
     func locationManager(manager: CLLocationManager!, didUpdateLocations locations: [CLLocation]!) -> TimeInterval{
         myLocationManager.stopUpdatingLocation()
         // 印出目前所在位置座標
-        var time:TimeInterval! = 0
-        var route = MKRoute()
-        let currentLocation :CLLocation = locations[0] as CLLocation
-        print("\(currentLocation.coordinate.latitude)")
-        print(", \(currentLocation.coordinate.longitude)")
+        //var time:TimeInterval! = 0
+        //var route = MKRoute()
+        //let currentLocation :CLLocation = locations[0] as CLLocation
+        //print("\(currentLocation.coordinate.latitude)")
+        //print(", \(currentLocation.coordinate.longitude)")
         
         let directionRequest = MKDirectionsRequest()
         
@@ -59,21 +60,34 @@ class GetRoute:NSObject, CLLocationManagerDelegate{
         directionRequest.transportType = MKDirectionsTransportType.automobile
         
         let directions = MKDirections(request: directionRequest)
-        print("GetRoute directions")
         
+        
+            
+            /*
+            directions.calculate {
+                [unowned self] response , erro in
+                //回應延遲
+                guard let unwrappedResponse = response else { return }
+                route = unwrappedResponse.routes[0]
+                self.time = route.expectedTravelTime
+                print("\n\n\nin GetRoute \(route.expectedTravelTime)\n\n\n")
+            }
+    */
         directions.calculate(completionHandler: {
             response, erro in
-            if erro == nil {
-                route = response!.routes[0] as MKRoute
-                time = route.expectedTravelTime
-                while !directions.isCalculating {}
+            if response == response {
                 self.myRoute = response!.routes[0] as MKRoute
                 self.time = self.myRoute.expectedTravelTime
-                print("GetRoute time:\(self.myRoute.expectedTravelTime)")
+            }
+            else {
+                print(erro!)
+                    
             }
         })
-        return route.expectedTravelTime
+        return self.time
     }
+    
+        
     func ask() {
         // 首次使用 向使用者詢問定位自身位置權限
         if CLLocationManager.authorizationStatus() == .notDetermined {

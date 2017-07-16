@@ -55,10 +55,8 @@ class CityTableViewController: UITableViewController {
         CLLocation(latitude:25.070626,longitude:121.366323),//6
         CLLocation(latitude:24.802470,longitude:120.965276),//7
         CLLocation(latitude:-1,longitude:-1),               //8
-        //CLLocation(latitude:24.809872,longitude:120.974803),//9
-        //CLLocation(latitude:24.689139,longitude:120.903598),//10
-        CLLocation(latitude:24.143657,longitude:120.675268),//9'
-        CLLocation(latitude:24.165257,longitude:120.643708),//10'
+        CLLocation(latitude:24.809872,longitude:120.974803),//9
+        CLLocation(latitude:24.689139,longitude:120.903598),//10
         CLLocation(latitude:24.164724,longitude:120.644626),//11
         CLLocation(latitude:24.164405,longitude:120.644626),//12
         CLLocation(latitude:-1,longitude:-1),               //13
@@ -79,8 +77,8 @@ class CityTableViewController: UITableViewController {
         "林口MITSUI OUTLET PARK威秀影城(MAPPA)",
         "新竹大遠百威秀影城",
         "",
-        "日日新大戲院",
-        "台中新光影城",
+        "新竹巨城威秀影城",
+        "頭份尚順威秀影城",
         "台中大遠百威秀影城",
         "台中TIGER CITY威秀影城",
         "",
@@ -175,13 +173,13 @@ class CityTableViewController: UITableViewController {
                     else if(theaterNum == "5" || theaterNum == "6"){
                         cities[0][2].theaters.append(theaterNew)
                     }
-                    else if(theaterNum == "7"){ //|| theaterNum == "9"){
+                    else if(theaterNum == "7" || theaterNum == "9"){
                         cities[0][5].theaters.append(theaterNew)
                     }
-                   // else if(theaterNum == "10"){
-                   //     cities[1][0].theaters.append(theaterNew)
-                   // }
-                    else if(theaterNum == "9" || theaterNum == "10" || theaterNum == "11" || theaterNum == "12"){
+                    else if(theaterNum == "10"){
+                        cities[1][0].theaters.append(theaterNew)
+                    }
+                    else if(theaterNum == "11" || theaterNum == "12"){
                         cities[1][1].theaters.append(theaterNew)
                     }
                     else if(theaterNum == "15" || theaterNum == "16"){

@@ -20,13 +20,14 @@ class TheaterChooserViewController: UIViewController, UITableViewDataSource, UIT
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         for theater in choose.city.theaters{
             let time = choose.g.getTime(theater: theater)
-            print("after GetRoute:\(time)")
-            print("ch's\(choose.g.time)")
-            times.append(time)
             connectServer(success: done, theater: theater)
+            print("\n\n\n\(time)\n\n\n")
+            times.append(choose.g.time)
         }
+        
         
         title = choose.city.name
 
@@ -46,8 +47,7 @@ class TheaterChooserViewController: UIViewController, UITableViewDataSource, UIT
                 return
             }
             let json = try! JSONSerialization.jsonObject(with: data, options: [])
-            //print("\(self.choose.movie.id)/\(self.choose.theater.num)/\(self.choose.version)")
-            //print(json)
+            print(json)
             //if let data = json as! String {
             success(json as! [Any])
             //      }
@@ -57,8 +57,6 @@ class TheaterChooserViewController: UIViewController, UITableViewDataSource, UIT
     }
     func done(_ data:[Any]){
         for i in data {
-            
-            
             let onedata = i as! [String:Any]
             if let times = onedata["time"] as? [String] {
                movieTimes.append(times)
@@ -77,6 +75,13 @@ class TheaterChooserViewController: UIViewController, UITableViewDataSource, UIT
         return 1
     }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if choose.city.theaters.count == 0{
+            self.goButton.isHighlighted = true
+            self.goButton.isEnabled = false
+        }
+        else{
+            self.goButton.isEnabled = true
+        }
         return choose.city.theaters.count
     }
     
@@ -109,6 +114,7 @@ class TheaterChooserViewController: UIViewController, UITableViewDataSource, UIT
             /*...
              find the best theater and time
              ...*/
+            choose.theater = nil
             getBestTheater()
             destinationController.choose = choose
         }
@@ -147,19 +153,25 @@ class TheaterChooserViewController: UIViewController, UITableViewDataSource, UIT
         for index in 0 ..< choose.city.theaters.count{
             
             nowDate.addTimeInterval(times[index])
-            print("TheaterChooser\(times[index])")
             
             let nowTime = formatter.string(from: nowDate)
             //計算各影城最優時間
             for time in movieTimes[index]{
                 if nowTime < "24:00" {
-                    if time > nowTime{
+                    if time > "06:00" {
+                        if time > nowTime{
+                            approachTime = time
+                            break
+                        }
+                    }
+                    else {
                         approachTime = time
                         break
                     }
+                    
                 }
                 else {
-                    if time > nowTime && time < "06:00"{
+                    if time < nowTime && time < "06:00"{
                         approachTime = time
                         break
                     }
@@ -167,7 +179,7 @@ class TheaterChooserViewController: UIViewController, UITableViewDataSource, UIT
             }
             let time1 = parseDuration(timeString: approachTime)
             let time2 = parseDuration(timeString: nowTime)
-            if (bestTimeX < time1 - time2) || bestTimeX<0 {
+            if (bestTimeX > time1 - time2) || bestTimeX<0 {
                 bestTime = approachTime
                 bestTimeX = time1 - time2
                 bestTheater = choose.city.theaters[index]

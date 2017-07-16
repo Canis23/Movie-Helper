@@ -15,9 +15,10 @@ class TimetableViewController: UIViewController, UITableViewDataSource, UITableV
     
     var choose:Choose!
     var time:TimeInterval!
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        //choose.movieTheater = choose.theater
         time = choose.g.getTime(theater: choose.theater)
         title = choose.theater.name
         self.tableView.estimatedRowHeight = 36.0
@@ -25,18 +26,14 @@ class TimetableViewController: UIViewController, UITableViewDataSource, UITableV
         
         self.tableView.separatorInset = UIEdgeInsets.init(top: 0, left: 0, bottom: 0, right: 0)
         // Do any additional setup after loading the view.
-        if(choose.getData == false){
-            connectServer(success: done)
-            choose.getData = true
-        }
-        else{
-            tableView.reloadData()
-        }
+        choose.timeTable = []
+        connectServer(success: done)
+        tableView.reloadData()
     }
     
     func connectServer(success: @escaping((_ data:[Any]) -> ())){
         let url = URL(string: "http://selab2.ahkui.com:1000/api/MovieHelper/moviebug/\(choose.movie.id)/\(choose.theater.num)/\(choose.version)")
-            //http://selab2.ahkui.com:1000/api/MovieHelper/moviebug/2689/1/1
+
         let task = URLSession.shared.dataTask(with: url!){  data, response, error in
             guard error == nil else {
                 print(error!)
@@ -72,7 +69,9 @@ class TimetableViewController: UIViewController, UITableViewDataSource, UITableV
             }
             choose.timeTable.append(dataa)
         }
-        tableView.reloadData()
+        DispatchQueue.main.async {
+            self.tableView.reloadData()
+        }
     }
 
     override func didReceiveMemoryWarning() {
@@ -90,7 +89,6 @@ class TimetableViewController: UIViewController, UITableViewDataSource, UITableV
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        print("make cell")
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! TimetableTableViewCell
         var morTime = ""
         var aftTime = ""
@@ -101,7 +99,6 @@ class TimetableViewController: UIViewController, UITableViewDataSource, UITableV
         cell.dayLabel.text = choose.timeTable[indexPath.row].day
         
         for time in choose.timeTable[indexPath.row].times{
-            print(time)
             if(time < "12:00" && time > "06:00"){
                 morTime += "\(time)\n"
             }
@@ -141,12 +138,8 @@ class TimetableViewController: UIViewController, UITableViewDataSource, UITableV
     
     func getMovieTime() {
         var nowDate = Date()
-        print("\n\n\n\n\nnow:\(nowDate)")
-        print("time:\(choose.g.time)")
         nowDate.addTimeInterval(choose.g.time) //到電影院要花費的時間
-        print("go:\(nowDate)")
         nowDate.addTimeInterval(choose.bufferTime)//choose設定的20分鐘buffer time
-        print("arr:\(nowDate)\n\n\n\n\n")
         let formatter = DateFormatter()
         formatter.dateFormat = "HH:mm"
         let nowTime = formatter.string(from: nowDate)
