@@ -7,8 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		13E072B61F1D3F39000421B6 /* GoSetDTViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13E072B51F1D3F39000421B6 /* GoSetDTViewController.swift */; };
+		13E072B81F1D5805000421B6 /* GoSetTimeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13E072B71F1D5805000421B6 /* GoSetTimeViewController.swift */; };
 		13EAFB4E1F12874A0039D016 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 13EAFB4D1F12874A0039D016 /* CoreLocation.framework */; };
-		13EAFB501F12A6F70039D016 /* GetRoute.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13EAFB4F1F12A6F70039D016 /* GetRoute.swift */; };
 		13FC86381EFB1A3D006A1E7E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13FC86371EFB1A3D006A1E7E /* AppDelegate.swift */; };
 		13FC86401EFB1A3D006A1E7E /* Movie_Helper.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 13FC863E1EFB1A3D006A1E7E /* Movie_Helper.xcdatamodeld */; };
 		13FC86421EFB1A3D006A1E7E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13FC86411EFB1A3D006A1E7E /* Assets.xcassets */; };
@@ -35,8 +36,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		13E072B51F1D3F39000421B6 /* GoSetDTViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GoSetDTViewController.swift; sourceTree = "<group>"; };
+		13E072B71F1D5805000421B6 /* GoSetTimeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GoSetTimeViewController.swift; sourceTree = "<group>"; };
 		13EAFB4D1F12874A0039D016 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
-		13EAFB4F1F12A6F70039D016 /* GetRoute.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GetRoute.swift; sourceTree = "<group>"; };
 		13FC86341EFB1A3D006A1E7E /* Movie Helper.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Movie Helper.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		13FC86371EFB1A3D006A1E7E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		13FC863F1EFB1A3D006A1E7E /* Movie_Helper.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Movie_Helper.xcdatamodel; sourceTree = "<group>"; };
@@ -120,7 +122,8 @@
 				13FC869F1F113366006A1E7E /* TimetableViewController.swift */,
 				13FC86A11F115311006A1E7E /* TimetableTableViewCell.swift */,
 				13FC86A31F120D8A006A1E7E /* Timetable.swift */,
-				13EAFB4F1F12A6F70039D016 /* GetRoute.swift */,
+				13E072B51F1D3F39000421B6 /* GoSetDTViewController.swift */,
+				13E072B71F1D5805000421B6 /* GoSetTimeViewController.swift */,
 			);
 			path = "Movie Helper";
 			sourceTree = "<group>";
@@ -215,8 +218,10 @@
 				13FC86A41F120D8A006A1E7E /* Timetable.swift in Sources */,
 				13FC864D1EFB2DBF006A1E7E /* MovieTableViewController.swift in Sources */,
 				13FC868A1F049396006A1E7E /* TimetableTableViewController.swift in Sources */,
+				13E072B81F1D5805000421B6 /* GoSetTimeViewController.swift in Sources */,
 				13FC86401EFB1A3D006A1E7E /* Movie_Helper.xcdatamodeld in Sources */,
 				13FC86921F0E8643006A1E7E /* Theater.swift in Sources */,
+				13E072B61F1D3F39000421B6 /* GoSetDTViewController.swift in Sources */,
 				13FC864F1EFB3054006A1E7E /* MovieTableViewCell.swift in Sources */,
 				13FC86381EFB1A3D006A1E7E /* AppDelegate.swift in Sources */,
 				13FC86821F041B63006A1E7E /* MovieDetailViewController.swift in Sources */,
@@ -231,7 +236,6 @@
 				13FC86901F0E6F74006A1E7E /* Choose.swift in Sources */,
 				13FC86A01F113366006A1E7E /* TimetableViewController.swift in Sources */,
 				13FC869C1F0F84DD006A1E7E /* MapViewController.swift in Sources */,
-				13EAFB501F12A6F70039D016 /* GetRoute.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -354,7 +358,8 @@
 		13FC864A1EFB1A3D006A1E7E /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = "";
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = E6TUTZ3QBB;
 				INFOPLIST_FILE = "Movie Helper/Info.plist";
@@ -368,7 +373,8 @@
 		13FC864B1EFB1A3D006A1E7E /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = "";
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = E6TUTZ3QBB;
 				INFOPLIST_FILE = "Movie Helper/Info.plist";

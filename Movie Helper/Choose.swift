@@ -21,10 +21,10 @@ class Choose{
     
     var movieTime = ""
     
-    let g = GetRoute()
+    //let g = GetRoute()
     
     //緩衝時間 秒為單位 1200秒=20分鐘
-    let bufferTime:TimeInterval = 1200
+    var bufferTime:TimeInterval!
     var arrivedTime = ""
     
     init(movie:Movie) {

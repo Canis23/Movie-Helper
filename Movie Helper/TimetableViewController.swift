@@ -7,8 +7,10 @@
 //
 
 import UIKit
+import CoreLocation
+import MapKit
 
-class TimetableViewController: UIViewController, UITableViewDataSource, UITableViewDelegate{
+class TimetableViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
     @IBOutlet var tableView:UITableView!
     @IBOutlet var goButton:UIButton!
@@ -16,20 +18,20 @@ class TimetableViewController: UIViewController, UITableViewDataSource, UITableV
     var choose:Choose!
     var time:TimeInterval!
     
-    
     override func viewDidLoad() {
         super.viewDidLoad()
-        time = choose.g.getTime(theater: choose.theater)
+        
         title = choose.theater.name
         self.tableView.estimatedRowHeight = 36.0
         self.tableView.rowHeight = UITableViewAutomaticDimension
-        
         self.tableView.separatorInset = UIEdgeInsets.init(top: 0, left: 0, bottom: 0, right: 0)
+        
         // Do any additional setup after loading the view.
         choose.timeTable = []
         connectServer(success: done)
         tableView.reloadData()
     }
+    
     
     func connectServer(success: @escaping((_ data:[Any]) -> ())){
         let url = URL(string: "http://selab2.ahkui.com:1000/api/MovieHelper/moviebug/\(choose.movie.id)/\(choose.theater.num)/\(choose.version)")
@@ -125,40 +127,14 @@ class TimetableViewController: UIViewController, UITableViewDataSource, UITableV
     
     //action
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "showMap" {
-            let destinationController = segue.destination as! MapViewController
+        if segue.identifier == "showSet" {
+            let destinationController = segue.destination as! GoSetTimeViewController
             /*...
              find the best theater and time
              ...*/
-            getMovieTime()
             //計算下一場時間
             destinationController.choose = choose
         }
-    }
-    
-    func getMovieTime() {
-        var nowDate = Date()
-        nowDate.addTimeInterval(choose.g.time) //到電影院要花費的時間
-        nowDate.addTimeInterval(choose.bufferTime)//choose設定的20分鐘buffer time
-        let formatter = DateFormatter()
-        formatter.dateFormat = "HH:mm"
-        let nowTime = formatter.string(from: nowDate)
-        choose.arrivedTime = nowTime
-        for time in choose.timeTable[0].times{
-            if nowTime < "24:00" {
-                if time > nowTime{
-                    choose.movieTime = time
-                    break
-                }
-            }
-            else {
-                if time > nowTime && time < "06:00"{
-                    choose.movieTime = time
-                    break
-                }
-            }
-        }
-        
     }
 
     /*

@@ -7,31 +7,53 @@
 //
 
 import UIKit
+import CoreLocation
+import MapKit
 
-class TheaterChooserViewController: UIViewController, UITableViewDataSource, UITableViewDelegate{
+class TheaterChooserViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, CLLocationManagerDelegate{
     
     @IBOutlet var tableView: UITableView!
     @IBOutlet var goButton: UIButton!
     
     var choose:Choose!
-    var times:[TimeInterval]! = []
     var movieTimes:[[String]] = []
+    
+    var myLocationManager: CLLocationManager!
+    var myAnnotation: MKPointAnnotation = MKPointAnnotation()
+    //var myRoute = MKRoute()
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        myLocationManager = CLLocationManager()
+        // 設置委任對象
+        myLocationManager.delegate = self
+        // 距離篩選器 用來設置移動多遠距離才觸發委任方法更新位置
+        //myLocationManager.distanceFilter = kCLLocationAccuracyNearestTenMeters
+        // 取得自身定位位置的精確度
+        myLocationManager.desiredAccuracy = kCLLocationAccuracyBest
+        ask()
+        myLocationManager.stopUpdatingHeading()
         for theater in choose.city.theaters{
-            let time = choose.g.getTime(theater: theater)
+            print("Send R:\(theater.name)")
+            theater.getRoute(myLocationManager: self.myLocationManager)
+        }
+        myLocationManager.startUpdatingHeading()
+        for theater in choose.city.theaters{
             connectServer(success: done, theater: theater)
-            print("\n\n\n\(time)\n\n\n")
-            times.append(choose.g.time)
+            //print("\n\n\n\(time)\n\n\n")
+            //times.append(choose.g.time)
         }
         
         
         title = choose.city.name
 
         // Do any additional setup after loading the view.
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        //myLocationManager.stopUpdatingLocation()
     }
     
     //爬下Json
@@ -109,89 +131,48 @@ class TheaterChooserViewController: UIViewController, UITableViewDataSource, UIT
                 
             }
         }
-        else if segue.identifier == "showMap" {
-            let destinationController = segue.destination as! MapViewController
+        else if segue.identifier == "showGoSet" {
+            let destinationController = segue.destination as! GoSetDTViewController
             /*...
              find the best theater and time
              ...*/
             choose.theater = nil
-            getBestTheater()
             destinationController.choose = choose
+            destinationController.movieTimes = movieTimes
         }
     }
     
-    func parseDuration(timeString:String) -> TimeInterval {
-        guard !timeString.isEmpty else {
-            return 0
-        }
-        
-        var interval:Double = 0
-        
-        let parts = timeString.components(separatedBy: ":")
-        for (index, part) in parts.reversed().enumerated() {
-            interval += (Double(part) ?? 0) * pow(Double(60), Double(index))
-        }
-        
-        return interval
-    }
     
-    func getBestTheater ()
-    {
-        var bestTheater:Theater!
-        var approachTime = ""
-        var bestTime = ""
-        var bestTimeX:TimeInterval = -1
-        
-        /*擷取現在時間*/
-        
-        var nowDate = Date()
-        nowDate.addTimeInterval(choose.bufferTime)//choose設定的20分鐘buffer time
-        let formatter = DateFormatter()
-        formatter.dateFormat = "HH:mm"
-        /*以上為共同時間*/
-        
-        for index in 0 ..< choose.city.theaters.count{
+    func ask() {
+        // 首次使用 向使用者詢問定位自身位置權限
+        if CLLocationManager.authorizationStatus() == .notDetermined {
+            // 取得定位服務授權
+            myLocationManager.requestWhenInUseAuthorization()
             
-            nowDate.addTimeInterval(times[index])
+            // 開始定位自身位置
+            myLocationManager.startUpdatingLocation()
             
-            let nowTime = formatter.string(from: nowDate)
-            //計算各影城最優時間
-            for time in movieTimes[index]{
-                if nowTime < "24:00" {
-                    if time > "06:00" {
-                        if time > nowTime{
-                            approachTime = time
-                            break
-                        }
-                    }
-                    else {
-                        approachTime = time
-                        break
-                    }
-                    
-                }
-                else {
-                    if time < nowTime && time < "06:00"{
-                        approachTime = time
-                        break
-                    }
-                }
-            }
-            let time1 = parseDuration(timeString: approachTime)
-            let time2 = parseDuration(timeString: nowTime)
-            if (bestTimeX > time1 - time2) || bestTimeX<0 {
-                bestTime = approachTime
-                bestTimeX = time1 - time2
-                bestTheater = choose.city.theaters[index]
-                choose.arrivedTime = nowTime
-            }
         }
-        
-        choose.theater = bestTheater
-        choose.movieTime = bestTime
+            // 使用者已經拒絕定位自身位置權限
+        else if CLLocationManager.authorizationStatus() == .denied {
+            // 提示可至[設定]中開啟權限
+            let alertController = UIAlertController( title: "定位權限已關閉", message: "如要變更權限，請至 設定 > 隱私權 > 定位服務 開啟", preferredStyle: .alert)
+            let okAction = UIAlertAction(
+                title: "確認", style: .default, handler:nil)
+            alertController.addAction(okAction)
+            present( alertController, animated: true, completion: nil)
+        }
+            // 使用者已經同意定位自身位置權限
+        else if CLLocationManager.authorizationStatus() == .authorizedWhenInUse {
+            // 開始定位自身位置
+            myLocationManager.startUpdatingLocation()
             
+        }
+        else{
+            myLocationManager.startUpdatingLocation()
+            
+        }
     }
-    
     
     
 
